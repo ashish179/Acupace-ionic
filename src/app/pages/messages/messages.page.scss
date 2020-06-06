@@ -1,0 +1,111 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 5 !important;
+  float: left;
+  position: relative;
+  display: flex;
+}
+
+#agora_local {
+  height: 400px;
+  width: 500px;
+  float: left;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1 !important;
+}
+
+.agora_remote {
+  background-color: #404040;
+  height: 115px;
+  width: 175px;
+  border: #2d3436 6px solid;
+  position: relative;
+  top: 15px;
+  left: 10%;
+  margin: 5px 5px 5px 5px;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.video-container {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.middle {
+  float: left;
+  width: 80vw;
+  height: 150px;
+  overflow: scroll !important;
+  z-index: inherit;
+  /*will change this to hidden later to deny scolling to user*/
+  white-space: nowrap;
+  background-color: #636e72;
+  opacity: 0.7;
+  border-radius: 10px;
+}
+
+.remove_calls {
+  white-space: nowrap;
+}
+
+.input {
+  margin-top: 400px;
+}
+div.timesetter {
+  text-align: center;
+  background-color: #07689f;
+  width: 70%;
+  margin: 30px auto;
+  width: 300px;
+}
+
+div.timesetter h2 {
+  font-family: 'Josenfin Sans';
+}
+
+h3.clockFont {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+}
+
+.class1 {
+  float: left;
+}
+
+#right_arrow {
+  font-size: 48px;
+  color: #0984e3;
+  z-index: 5 !important;
+  position: relative;
+  float: left;
+}
+#left_arrow {
+  font-size: 48px;
+  float: left;
+  color: #0984e3;
+  z-index: 5 !important;
+  position: relative;
+}
+ion-toolbar {
+  --ion-background-color: #0f4c81 !important;
+}
+ion-title {
+  color: white;
+  margin-left: 100px;
+  margin-top: 5px;
+}
+ion-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.bution {
+  z-index: 5 !important;
+  left: 50%;
+}

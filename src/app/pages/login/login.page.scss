@@ -1,0 +1,54 @@
+page-login {
+  // Validation Error Msg
+  .noborder {
+    border-bottom: 0px solid #ffffff !important;
+  }
+  .error {
+    font-size: 14.4px !important;
+    color: #ea6153;
+  }
+}
+
+ion-toolbar {
+  text-align: center;
+}
+
+ion-content {
+  // --ion-background-color: #8cccf7 !important;
+  --background: url('https://images.pexels.com/photos/4007310/pexels-photo-4007310.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+ion-list {
+  border-radius: 15px !important;
+}
+
+h1 {
+  margin-top: 60px;
+  margin-left: 125px;
+  color: #355c7d;
+  font-size: 16pt;
+}
+img {
+  margin-top: 30px;
+  margin-left: 10px;
+  width: 150px;
+  height: 130px;
+}
+.logoname {
+  margin-top: -25px;
+  margin-left: 8px;
+  color: rgb(8, 29, 124);
+}
+
+.adjust {
+  margin-top: 20px;
+  margin-left: -5px;
+}
+
+ion-button {
+  --background: #27496d;
+}

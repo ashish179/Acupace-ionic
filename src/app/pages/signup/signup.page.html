@@ -1,0 +1,79 @@
+<ion-content padding="true">
+  <div class="center">
+    <img src="assets/images/logo1.png" width="88" height="85" alt="logo" />
+    <p class="logoname" style="text-align: center;">accuMeet</p>
+  </div>
+  <div class="head">
+    <h1>Create Account</h1>
+  </div>
+  <form padding text-center [formGroup]="registerForm">
+    <div class="adjust">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <!-- [(ngModel)]="postData.name" -->
+          <ion-input
+            autocomplete="off"
+            formControlName="name"
+            name="name"
+            type="text"
+          ></ion-input>
+        </ion-item>
+        <div
+          class="noborder"
+          no-lines
+          *ngIf="!registerForm.controls.name.valid && (registerForm.controls.name.dirty || submitAttempt)"
+        >
+          <p text-left text-wrap class="error">Please enter the Name</p>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input
+            autocomplete="off"
+            formControlName="email"
+            name="email"
+            type="email"
+          ></ion-input>
+        </ion-item>
+        <div
+          class="noborder"
+          no-lines
+          *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)"
+        >
+          <p text-left text-wrap class="error">Please enter a valid email</p>
+        </div>
+
+        <ion-item>
+          <ion-label position="stacked">Mobile No</ion-label>
+          <ion-input
+            autocomplete="off"
+            name="mobile"
+            formControlName="mobile"
+            type="tel"
+          ></ion-input>
+        </ion-item>
+        <div
+          class="noborder"
+          no-lines
+          *ngIf="!registerForm.controls.mobile.valid && (registerForm.controls.mobile.dirty || submitAttempt)"
+        >
+          <p text-left text-wrap class="error">
+            Please enter 10 digit Mobile No.
+          </p>
+        </div>
+      </ion-list>
+      <br />
+
+      Already have an account? <a routerLink="/login">Sign in.</a>
+      <ion-button expand="block" shape="round" (click)="signupAction()"
+        >Create Account</ion-button
+      >
+    </div>
+  </form>
+
+  <div class="footer">
+    <p>By signing up! agree with the</p>
+    <a href="">term and condition</a>
+  </div>
+</ion-content>

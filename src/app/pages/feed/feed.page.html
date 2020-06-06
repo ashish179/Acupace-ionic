@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle class="class1">
+      <ion-icon name="menu" color="light"></ion-icon>
+    </ion-menu-toggle>
+    <ion-title>Dashboard </ion-title>
+
+    <ion-icon
+      (click)="refresh()"
+      class="notification"
+      routerLink="/home/tutorial"
+      name="notifications-outline"
+      color="light"
+    ></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scroll-y="true">
+  <h2>Hello {{ authUser?.name }},</h2>
+  <h2>Welcome To Acupace</h2>
+
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <img
+            src="https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt=""
+          />
+          <ion-card-subtitle></ion-card-subtitle>
+          <ion-card-title>AcuMEET</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit
+          clean.
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <img
+            src="https://images.pexels.com/photos/4225920/pexels-photo-4225920.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt=""
+          />
+          <ion-card-subtitle></ion-card-subtitle>
+          <ion-card-title>AcuMEET</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit
+          clean.
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <img
+            src="https://images.pexels.com/photos/4031710/pexels-photo-4031710.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt=""
+          />
+          <ion-card-subtitle></ion-card-subtitle>
+          <ion-card-title>AcuMEET</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit
+          clean.
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card>
+        <ion-card-header>
+          <img
+            src="https://images.pexels.com/photos/4031818/pexels-photo-4031818.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt=""
+          />
+          <ion-card-subtitle></ion-card-subtitle>
+          <ion-card-title>AcuMEET</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          Keep close to Nature's heart... and break clear away, once in awhile,
+          and climb a mountain or spend a week in the woods. Wash your spirit
+          clean.
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,34 @@
+ion-tab-button {
+  --color-selected: #fff;
+}
+img {
+  margin-left: 135px;
+  margin-top: 23px;
+  height: 25px;
+  width: 25px;
+}
+ion-card-subtitle {
+  margin-left: 10px;
+  margin-top: 70px;
+  height: 60px;
+}
+.user-part {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  background-image: url('https://images.pexels.com/photos/4031710/pexels-photo-4031710.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=300');
+}
+ion-item {
+  color: white;
+}
+
+ion-item {
+  --ion-background-color: #10375c !important;
+  // --background: url('https://images.pexels.com/photos/3518623/pexels-photo-3518623.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // background-size: cover;
+}
+ion-icon {
+  color: white;
+}

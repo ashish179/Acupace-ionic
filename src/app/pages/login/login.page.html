@@ -1,0 +1,59 @@
+<ion-content class="content" padding="true">
+  <div class="center">
+    <img src="assets/images/logo1.png" width="88" height="85" alt="logo" />
+    <p class="logoname" style="text-align: center;">accuMeet</p>
+  </div>
+  <div class="head">
+    <h1>Sign in</h1>
+  </div>
+  <form [formGroup]="loginForm">
+    <div class="adjust">
+      <ion-list>
+        <ion-item>
+          <div
+            class="noborder"
+            no-lines
+            *ngIf="!loginForm.controls.mobileno.valid && (loginForm.controls.mobileno.dirty || submitAttempt)"
+          >
+            <p text-left text-wrap class="error" color="danger">
+              Please enter the mobile number
+            </p>
+          </div>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input
+            formControlName="mobileno"
+            autocomplete="off"
+            type="tel"
+            name="mobileno"
+          ></ion-input>
+        </ion-item>
+        <!-- [(ngModel)]="postData.mobileno" -->
+
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input
+            autocomplete="off"
+            formControlName="password"
+            type="password"
+            name="password"
+          ></ion-input>
+          <!-- [(ngModel)]="postData.password" -->
+        </ion-item>
+
+        <div
+          class="noborder"
+          no-lines
+          *ngIf="!loginForm.controls.password.valid && (loginForm.controls.password.dirty || submitAttempt)"
+        ></div>
+      </ion-list>
+      <p>
+        Dont Have Account ?
+        <a routerLink="/signup">Create Account</a>
+      </p>
+
+      <ion-button shape="round" expand="block" (click)="loginAction()"
+        >Login</ion-button
+      >
+    </div>
+  </form>
+</ion-content>

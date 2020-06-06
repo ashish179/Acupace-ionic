@@ -1,0 +1,26 @@
+.class1 {
+  float: left;
+}
+ion-toolbar {
+  --ion-background-color: #10375c !important;
+}
+ion-title {
+  color: white;
+  //  text-align: center;
+  margin-left: 140px;
+  margin-top: 5px;
+}
+ion-icon {
+  width: 30px;
+  height: 30px;
+}
+
+div {
+  border-style: groove;
+  height: 200px;
+  background-image: url('https://images.pexels.com/photos/874158/pexels-photo-874158.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=300');
+}
+
+ion-button {
+  --background: #27496d;
+}

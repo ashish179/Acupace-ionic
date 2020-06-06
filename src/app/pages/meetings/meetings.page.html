@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-toggle class="class1">
+      <ion-icon name="menu" color="light"></ion-icon>
+    </ion-menu-toggle>
+    <ion-title>Meetings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher
+    slot="fixed"
+    pullFactor="0.5"
+    pullMin="100"
+    pullMax="200"
+    (ionRefresh)="doRefresh($event)"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-item lines="inset" *ngFor="let item of list">
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              {{item.role}}
+            </ion-col>
+            <ion-col>
+              {{item.host_name}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              {{item.room_id}}
+            </ion-col>
+            <ion-col>
+              Start time: {{item.host_meeting_start_time}}
+            </ion-col>
+            <ion-col>
+              End time: {{item.host_meeting_end_time}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-button
+          shape="round"
+        color="secondary"
+          routerLink="/home/messages"
+          (click)="goTo(item,item.host_meeting_start_time,item.host_meeting_end_time)"
+          >start meet</ion-button
+        >
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+</ion-content>
