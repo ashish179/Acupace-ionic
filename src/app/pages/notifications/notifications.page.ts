@@ -56,6 +56,16 @@ export class NotificationsPage implements OnInit {
       .notificationList(email)
       .subscribe((res: any) => {
         this.list = res.result;
+         console.log(this.list);
+
+        this.list.reduce((arr, item) => {
+          let exists = !!arr.find(x => x.host_room_id === item.host_room_id);
+          if(!exists){
+              arr.push(item);
+          }
+          return arr;
+       }, []);
+
         console.log(this.list);
       });
   }
@@ -70,10 +80,10 @@ export class NotificationsPage implements OnInit {
         host_email: this.authUser.user_email,
         role: 'host',
         host_device_details: 'device_name',
-        host_meeting_start_time: this.inviteForm.get('host_meeting_start_time')
-          .value,
-        host_meeting_end_time: this.inviteForm.get('host_meeting_end_time')
-          .value,
+        host_meeting_start_time: moment(this.inviteForm.get('host_meeting_start_time')
+          .value).format("YYYY-MM-DDTHH:mm"),
+        host_meeting_end_time:  moment(this.inviteForm.get('host_meeting_end_time')
+          .value).format("YYYY-MM-DDTHH:mm"),
         attendee_email: this.attendee_email.value,
       };
       console.log(bodystring);
@@ -102,5 +112,5 @@ export class NotificationsPage implements OnInit {
     }
     console.log(this.attendee_email.length);
   }
-  
+
 }

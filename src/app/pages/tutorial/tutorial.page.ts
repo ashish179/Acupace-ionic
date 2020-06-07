@@ -16,6 +16,7 @@ export class TutorialPage implements OnInit {
   public submitAttempt: boolean = false;
   public subscription: any;
   public bodystring: any;
+  public leng :any;
 
   constructor(
     private webservice: NotificationService,
@@ -36,14 +37,26 @@ export class TutorialPage implements OnInit {
       .subscribe((res: any) => {
         this.list = res.result;
         console.log(this.list);
+        this.list.reduce((arr, item) => {
+          let exists = !!arr.find(x => x.host_room_id === item.host_room_id);
+          if(!exists){
+              arr.push(item);
+          }
+          return arr;
+      }, []);
+       console.log(this.list);
+       this.leng = this.list.length;
       });
+setInterval(() => {
+   this.doRefresh();
+ }, 5000);
+
   }
 
   goTo(object, start_date, end_date) {
     let now = moment();
     let date = moment.utc(start_date).local();
-    this.data.setData(object);
-    console.log(object);
+    console.log(now,date);
     if (now.isBefore(end_date) && date.isBefore(now.toISOString(true))) {
       this.toastService.presentToast('to activate meeting press start call');
       this.data.setData(object);
@@ -52,19 +65,26 @@ export class TutorialPage implements OnInit {
     }
   }
 
-  doRefresh(event) {
-    console.log('Begin async operation');
+  doRefresh() {
     this.subscription.unsubscribe();
     let email = { attendee_email: this.authUser.user_email };
+    console.log(this.authUser);
     this.subscription = this.webservice
       .notificationList(email)
       .subscribe((res: any) => {
         this.list = res.result;
         console.log(this.list);
+        this.list.reduce((arr, item) => {
+          let exists = !!arr.find(x => x.host_room_id === item.host_room_id);
+          if(!exists){
+              arr.push(item);
+          }
+          return arr;
+      }, []);
+       console.log(this.list);
+       if(this.leng < this.list.length){
+         this.toastService.presentToast('you have new invitation');
+       }
       });
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
+}
 }

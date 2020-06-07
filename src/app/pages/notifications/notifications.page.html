@@ -26,12 +26,12 @@
               placeholder="Please Enter the attendee_email"
               [formControlName]="idx"
             ></ion-input>
-            <ion-button shape="round" (click)="deleteNameField(idx)"
-              >remove</ion-button
+            <ion-button shape="round" (click)="deleteNameField(idx)" color="danger"
+              >-</ion-button
             >
           </div>
           <ion-button shape="round" (click)="addNameField()"
-            >add email</ion-button
+            >+</ion-button
           >
         </ion-item>
         <ion-item lines="inset">

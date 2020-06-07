@@ -10,14 +10,7 @@
 <ion-content>
   <div ng-app="stopwatch">
     <div class="timesetter" ng-controller="timeController as times">
-      <h2>Call End In</h2>
-      <countdown
-        #cd
-        [config]="{ leftTime:2400,demand:true}"
-        (event)="handleEvent($event)"
-      ></countdown>
-      <br>
-       <ion-button (click)="leave()" (click)="cd.stop()" color="dark">End Call</ion-button>
+       <ion-button (click)="leave()" color="dark">End Call</ion-button>
     </div>
 
   </div>
