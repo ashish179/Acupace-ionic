@@ -47,25 +47,21 @@ export class TutorialPage implements OnInit {
        console.log(this.list);
        this.leng = this.list.length;
       });
-setInterval(() => {
-   this.doRefresh();
- }, 5000);
-
   }
 
   goTo(object, start_date, end_date) {
-    let now = moment();
-    let date = moment.utc(start_date).local();
-    console.log(now,date);
-    if (now.isBefore(end_date) && date.isBefore(now.toISOString(true))) {
-      this.toastService.presentToast('to activate meeting press start call');
-      this.data.setData(object);
-    } else {
-      this.toastService.presentToast('time out of bounds');
-    }
-  }
+   let now = moment().format("YYYY-MM-DDTHH:mm");
+   let date = moment(start_date).format("YYYY-MM-DDTHH:mm");
+   console.log(now,date);
+   if (moment(now).isBefore(moment(end_date).format("YYYY-MM-DDTHH:mm")) && moment(moment(start_date).format("YYYY-MM-DDTHH:mm")).isBefore(moment(now))) {
+     this.data.setData(object);
+   } else {
+     this.toastService.presentToast('time out of bounds');
+   }
+ }
 
-  doRefresh() {
+
+  doRefresh(event) {
     this.subscription.unsubscribe();
     let email = { attendee_email: this.authUser.user_email };
     console.log(this.authUser);
@@ -84,7 +80,11 @@ setInterval(() => {
        console.log(this.list);
        if(this.leng < this.list.length){
          this.toastService.presentToast('you have new invitation');
+         this.leng = this.list.length;
        }
+       if (event){
+          event.target.complete();
+      }
       });
 }
 }

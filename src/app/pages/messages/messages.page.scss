@@ -8,8 +8,8 @@
 }
 
 #agora_local {
-  height: 400px;
-  width: 500px;
+  height: 100%;
+  width: 100%;
   float: left;
   position: relative;
   margin-left: auto;
@@ -39,7 +39,7 @@
 
 .middle {
   float: left;
-  width: 80vw;
+  width: 70vw;
   height: 150px;
   overflow: scroll !important;
   z-index: inherit;

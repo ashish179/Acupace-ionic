@@ -6,23 +6,14 @@
     <ion-title>Join Meeting</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div ng-app="stopwatch">
-    <div class="timesetter" ng-controller="timeController as times">
-       <ion-button (click)="leave()" color="dark">End Call</ion-button>
-    </div>
-
-  </div>
-
-
+<div #main>
   <div #container class="container" >
   		<div class="row" style="display:flex">
   			<div class="col-sm">
   				<div style="float: left">
-  					<i class="fa fa-arrow-circle-left" (click)="scrollLeft()" [ngStyle]="{'cursor':'pointer'}"
-  						id="left_arrow"></i>
-  					<!--<button (click)="scrollLeft()">left</button>-->
+            <ion-button (click)="leave()" color="danger" size="small" shape="round"><ion-icon name="call-outline"></ion-icon>
+           </ion-button>
   				</div>
   			</div>
   			<div class="col-10">
@@ -33,15 +24,13 @@
   			</div>
   			<div class="col-sm">
   				<div style="float: right">
-  					<i class="fa fa-arrow-circle-right" (click)="scrollRight()" [ngStyle]="{'cursor':'pointer'}"
-  						id="right_arrow"></i>
-  					<!--<button (click)="scrollRight()">right</button>-->
+            <ion-button (click)="fullScreen()" color="dark" size="small" shape="round"><ion-icon name="images-outline"></ion-icon>
+          </ion-button>
   				</div>
   			</div>
   		</div>
   	</div>
-
-
-  <div #agora_local id="agora_local" (click)="toggleView()"></div>
+  <div #agora_local id="agora_local" (click)="toggleView()" ></div>
+  </div>
 
 </ion-content>

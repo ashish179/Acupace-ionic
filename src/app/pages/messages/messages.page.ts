@@ -8,7 +8,7 @@ import { AuthService } from './../../services/auth.service';
 import { HttpService } from './../../services/http.service';
 import { AlertService } from './../../services/alert.service';
 import { ToastService } from './../../services/toast.service';
-
+import { BigScreenService } from 'angular-bigscreen';
 
 
 @Component({
@@ -21,6 +21,7 @@ export class MessagesPage implements OnInit {
  localStream: Stream // Add
  dataObject: any;
  channelName : string;
+  public mainScreen : any  = 0;
  UID : any;
  localCallId = 'agora_local';
  reset:any;
@@ -28,6 +29,7 @@ export class MessagesPage implements OnInit {
  subscription : any;
  remoteCalls: any = [];
  @ViewChild('agora_local',{static: false}) private element : ElementRef;
+  @ViewChild('main',{static: false}) private main: ElementRef;
  @ViewChild('container',{static: false}) private container : ElementRef;
  @ViewChild('widgetsContent', {read: ElementRef,static:true}) public widgetsContent: ElementRef<any>;
 
@@ -42,6 +44,7 @@ public scrollLeft(): void {
   public LocalStreamID=this.localCallId;
   // Add
   constructor(
+    private bigScreenService: BigScreenService,
     private agoraService: AngularAgoraRtcService,
     private renderer: Renderer2,
     public data : DataService ,
@@ -239,6 +242,17 @@ adjust(){
     this.Toggle(this.localCallId,remoteId);
     this.LocalStreamID=remoteId;
   }
+}
+
+ fullScreen(){
+   if(this.mainScreen){
+     this.bigScreenService.exit();
+     this.mainScreen = 0;
+ }
+ else{
+   this.bigScreenService.request(this.main.nativeElement);
+   this.mainScreen = 1;
+ }
 }
 
 }

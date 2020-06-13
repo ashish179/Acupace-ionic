@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-menu-toggle class=\"class1\">\r\n      <ion-icon name=\"menu\" color=\"light\"></ion-icon>\r\n    </ion-menu-toggle>\r\n    <ion-title>notification</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <ion-refresher\r\n    slot=\"fixed\"\r\n    pullFactor=\"0.5\"\r\n    pullMin=\"100\"\r\n    pullMax=\"200\"\r\n    (ionRefresh)=\"doRefresh($event)\"\r\n  >\r\n    <ion-refresher-content></ion-refresher-content>\r\n  </ion-refresher>\r\n  <ion-item lines=\"inset\" *ngFor=\"let item of list\">\r\n    <ion-card>\r\n      <ion-card-content>\r\n        <ion-grid>\r\n          <ion-row>\r\n            <ion-col>\r\n              {{item.role}}\r\n            </ion-col>\r\n            <ion-col>\r\n              {{item.host_name}}\r\n            </ion-col>\r\n          </ion-row>\r\n          <ion-row>\r\n            <ion-col>\r\n              {{item.room_id}}\r\n            </ion-col>\r\n            <ion-col>\r\n              Start time: {{item.host_meeting_start_time}}\r\n            </ion-col>\r\n            <ion-col>\r\n              End time: {{item.host_meeting_end_time}}\r\n            </ion-col>\r\n          </ion-row>\r\n        </ion-grid>\r\n        <ion-button\r\n          shape=\"round\"\r\n          color=\"danger\"\r\n          routerLink=\"/home/messages\"\r\n          (click)=\"goTo(item,item.host_meeting_start_time,item.host_meeting_end_time)\"\r\n          >start meet</ion-button\r\n        >\r\n      </ion-card-content>\r\n    </ion-card>\r\n  </ion-item>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-menu-toggle class=\"class1\">\r\n      <ion-icon name=\"menu\" color=\"light\"></ion-icon>\r\n    </ion-menu-toggle>\r\n    <ion-title>Meetings as attendee</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n\r\n<ion-content>\r\n  <ion-refresher slot=\"fixed\" (ionRefresh)=\"doRefresh($event)\">\r\n    <ion-refresher-content\r\n      pullingIcon=\"chevron-down-circle-outline\"\r\n      pullingText=\"Pull to refresh\"\r\n      refreshingSpinner=\"circles\"\r\n      refreshingText=\"Refreshing...\">\r\n    </ion-refresher-content>\r\n  </ion-refresher>\r\n\r\n\r\n\r\n  <ion-item routerLink=\"/home/meetings\" >\r\n    <ion-icon\r\n      name=\"notifications-outline\"\r\n      color=\"dark\"\r\n      slot=\"start\"\r\n    ></ion-icon>\r\n    <ion-button color=\"dark\">view as host</ion-button>\r\n  </ion-item>\r\n\r\n  <ion-item lines=\"inset\" *ngFor=\"let item of list\">\r\n    <ion-card color=\"light\">\r\n      <ion-card-content>\r\n        <ion-grid>\r\n          <ion-row>\r\n            <ion-col>\r\n              {{item.role}}\r\n            </ion-col>\r\n            <ion-col>\r\n              {{item.host_name}}\r\n            </ion-col>\r\n          </ion-row>\r\n          <ion-row>\r\n            <ion-col>\r\n              {{item.room_id}}\r\n            </ion-col>\r\n            <ion-col>\r\n              Start time: {{item.host_meeting_start_time}}\r\n            </ion-col>\r\n            <ion-col>\r\n              End time: {{item.host_meeting_end_time}}\r\n            </ion-col>\r\n          </ion-row>\r\n        </ion-grid>\r\n        <ion-button\r\n          shape=\"round\"\r\n          routerLink=\"/home/messages\"\r\n          (click)=\"goTo(item,item.host_meeting_start_time,item.host_meeting_end_time)\"\r\n          >start meet</ion-button\r\n        >\r\n      </ion-card-content>\r\n    </ion-card>\r\n  </ion-item>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -69,7 +69,7 @@ var TutorialPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "ion-toolbar {\n  --ion-background-color: #0f4c81 !important;\n}\n\nion-title {\n  color: white;\n  text-align: center;\n}\n\nion-icon {\n  width: 30px;\n  height: 30px;\n}\n\nion-grid {\n  border-radius: 15px;\n}\n\nion-card {\n  background-color: #1b262c;\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdHV0b3JpYWwvQzpcXFVzZXJzXFxsZW5vdm9cXERlc2t0b3BcXHByb2plY3RcXGFjdU1FRVQvc3JjXFxhcHBcXHBhZ2VzXFx0dXRvcmlhbFxcdHV0b3JpYWwucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy90dXRvcmlhbC90dXRvcmlhbC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSwwQ0FBQTtBQ0NGOztBRENBO0VBQ0UsWUFBQTtFQUNBLGtCQUFBO0FDRUY7O0FEQUE7RUFDRSxXQUFBO0VBQ0EsWUFBQTtBQ0dGOztBREFBO0VBQ0UsbUJBQUE7QUNHRjs7QURBQTtFQUNFLHlCQUFBO0VBQ0EsWUFBQTtBQ0dGIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvdHV0b3JpYWwvdHV0b3JpYWwucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXRvb2xiYXIge1xyXG4gIC0taW9uLWJhY2tncm91bmQtY29sb3I6ICMwZjRjODEgIWltcG9ydGFudDtcclxufVxyXG5pb24tdGl0bGUge1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuaW9uLWljb24ge1xyXG4gIHdpZHRoOiAzMHB4O1xyXG4gIGhlaWdodDogMzBweDtcclxufVxyXG5cclxuaW9uLWdyaWQge1xyXG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XHJcbn1cclxuXHJcbmlvbi1jYXJkIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMWIyNjJjO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxufVxyXG4iLCJpb24tdG9vbGJhciB7XG4gIC0taW9uLWJhY2tncm91bmQtY29sb3I6ICMwZjRjODEgIWltcG9ydGFudDtcbn1cblxuaW9uLXRpdGxlIHtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbmlvbi1pY29uIHtcbiAgd2lkdGg6IDMwcHg7XG4gIGhlaWdodDogMzBweDtcbn1cblxuaW9uLWdyaWQge1xuICBib3JkZXItcmFkaXVzOiAxNXB4O1xufVxuXG5pb24tY2FyZCB7XG4gIGJhY2tncm91bmQtY29sb3I6ICMxYjI2MmM7XG4gIGNvbG9yOiB3aGl0ZTtcbn0iXX0= */"
+module.exports = "ion-toolbar {\n  --ion-background-color: #0f4c81 !important;\n}\n\nion-title {\n  color: white;\n  margin-left: 80px;\n  margin-top: 5px;\n}\n\nion-icon {\n  width: 30px;\n  height: 30px;\n}\n\nion-grid {\n  border-radius: 15px;\n}\n\nion-card {\n  color: dark;\n}\n\n.class1 {\n  float: left;\n}\n\nion-button {\n  --background: #0f4c81;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvdHV0b3JpYWwvQzpcXFVzZXJzXFxsZW5vdm9cXERlc2t0b3BcXHByb2plY3RcXEFjdXBhY2UtaW9uaWMvc3JjXFxhcHBcXHBhZ2VzXFx0dXRvcmlhbFxcdHV0b3JpYWwucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy90dXRvcmlhbC90dXRvcmlhbC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSwwQ0FBQTtBQ0NGOztBRENBO0VBQ0UsWUFBQTtFQUVBLGlCQUFBO0VBQ0EsZUFBQTtBQ0NGOztBRENBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNFRjs7QURDQTtFQUNFLG1CQUFBO0FDRUY7O0FEQ0E7RUFDRSxXQUFBO0FDRUY7O0FEQUE7RUFDRSxXQUFBO0FDR0Y7O0FEQUE7RUFDRSxxQkFBQTtBQ0dGIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvdHV0b3JpYWwvdHV0b3JpYWwucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLXRvb2xiYXIge1xyXG4gIC0taW9uLWJhY2tncm91bmQtY29sb3I6ICMwZjRjODEgIWltcG9ydGFudDtcclxufVxyXG5pb24tdGl0bGUge1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICAvLyAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIG1hcmdpbi1sZWZ0OiA4MHB4O1xyXG4gIG1hcmdpbi10b3A6IDVweDtcclxufVxyXG5pb24taWNvbiB7XHJcbiAgd2lkdGg6IDMwcHg7XHJcbiAgaGVpZ2h0OiAzMHB4O1xyXG59XHJcblxyXG5pb24tZ3JpZCB7XHJcbiAgYm9yZGVyLXJhZGl1czogMTVweDtcclxufVxyXG5cclxuaW9uLWNhcmQge1xyXG4gIGNvbG9yOiBkYXJrO1xyXG59XHJcbi5jbGFzczEge1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG59XHJcblxyXG5pb24tYnV0dG9uIHtcclxuICAtLWJhY2tncm91bmQ6ICMwZjRjODE7XHJcbn1cclxuIiwiaW9uLXRvb2xiYXIge1xuICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiAjMGY0YzgxICFpbXBvcnRhbnQ7XG59XG5cbmlvbi10aXRsZSB7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgbWFyZ2luLWxlZnQ6IDgwcHg7XG4gIG1hcmdpbi10b3A6IDVweDtcbn1cblxuaW9uLWljb24ge1xuICB3aWR0aDogMzBweDtcbiAgaGVpZ2h0OiAzMHB4O1xufVxuXG5pb24tZ3JpZCB7XG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XG59XG5cbmlvbi1jYXJkIHtcbiAgY29sb3I6IGRhcms7XG59XG5cbi5jbGFzczEge1xuICBmbG9hdDogbGVmdDtcbn1cblxuaW9uLWJ1dHRvbiB7XG4gIC0tYmFja2dyb3VuZDogIzBmNGM4MTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -118,15 +118,22 @@ var TutorialPage = /** @class */ (function () {
             .subscribe(function (res) {
             _this.list = res.result;
             console.log(_this.list);
+            _this.list.reduce(function (arr, item) {
+                var exists = !!arr.find(function (x) { return x.host_room_id === item.host_room_id; });
+                if (!exists) {
+                    arr.push(item);
+                }
+                return arr;
+            }, []);
+            console.log(_this.list);
+            _this.leng = _this.list.length;
         });
     };
     TutorialPage.prototype.goTo = function (object, start_date, end_date) {
-        var now = moment__WEBPACK_IMPORTED_MODULE_6__();
-        var date = moment__WEBPACK_IMPORTED_MODULE_6__["utc"](start_date).local();
-        this.data.setData(object);
-        console.log(object);
-        if (now.isBefore(end_date) && date.isBefore(now.toISOString(true))) {
-            this.toastService.presentToast('to activate meeting press start call');
+        var now = moment__WEBPACK_IMPORTED_MODULE_6__().format("YYYY-MM-DDTHH:mm");
+        var date = moment__WEBPACK_IMPORTED_MODULE_6__(start_date).format("YYYY-MM-DDTHH:mm");
+        console.log(now, date);
+        if (moment__WEBPACK_IMPORTED_MODULE_6__(now).isBefore(moment__WEBPACK_IMPORTED_MODULE_6__(end_date).format("YYYY-MM-DDTHH:mm")) && moment__WEBPACK_IMPORTED_MODULE_6__(moment__WEBPACK_IMPORTED_MODULE_6__(start_date).format("YYYY-MM-DDTHH:mm")).isBefore(moment__WEBPACK_IMPORTED_MODULE_6__(now))) {
             this.data.setData(object);
         }
         else {
@@ -135,19 +142,30 @@ var TutorialPage = /** @class */ (function () {
     };
     TutorialPage.prototype.doRefresh = function (event) {
         var _this = this;
-        console.log('Begin async operation');
         this.subscription.unsubscribe();
         var email = { attendee_email: this.authUser.user_email };
+        console.log(this.authUser);
         this.subscription = this.webservice
             .notificationList(email)
             .subscribe(function (res) {
             _this.list = res.result;
             console.log(_this.list);
+            _this.list.reduce(function (arr, item) {
+                var exists = !!arr.find(function (x) { return x.host_room_id === item.host_room_id; });
+                if (!exists) {
+                    arr.push(item);
+                }
+                return arr;
+            }, []);
+            console.log(_this.list);
+            if (_this.leng < _this.list.length) {
+                _this.toastService.presentToast('you have new invitation');
+                _this.leng = _this.list.length;
+            }
+            if (event) {
+                event.target.complete();
+            }
         });
-        setTimeout(function () {
-            console.log('Async operation has ended');
-            event.target.complete();
-        }, 2000);
     };
     TutorialPage.ctorParameters = function () { return [
         { type: _services_notification_service__WEBPACK_IMPORTED_MODULE_3__["NotificationService"] },

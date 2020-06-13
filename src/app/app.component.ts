@@ -21,7 +21,7 @@ export class AppComponent {
     this.diagnostic.requestCameraAuthorization()
     this.diagnostic.requestMicrophoneAuthorization()
     this.diagnostic.requestExternalStorageAuthorization()
-      
+
   }
 
   initializeApp() {

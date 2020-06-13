@@ -3,7 +3,7 @@
     <ion-menu-toggle class="class1">
       <ion-icon name="menu" color="light"></ion-icon>
     </ion-menu-toggle>
-    <ion-title>Meetings</ion-title>
+    <ion-title>Meetings as host</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,6 +17,15 @@
   >
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
+  <ion-item routerLink="/home/tutorial">
+    <ion-icon
+      name="notifications-outline"
+      color="dark"
+      slot="start"
+    ></ion-icon>
+    <ion-button color="dark">view as attendee</ion-button>
+  </ion-item>
 
   <ion-item lines="inset" *ngFor="let item of list">
     <ion-card>

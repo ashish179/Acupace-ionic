@@ -358,6 +358,230 @@ class Device {
 
 /***/ }),
 
+/***/ "./node_modules/angular-bigscreen/fesm2015/angular-bigscreen.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/angular-bigscreen/fesm2015/angular-bigscreen.js ***!
+  \**********************************************************************/
+/*! exports provided: BigScreenService, BigScreenModule, ɵa */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BigScreenService", function() { return BigScreenService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BigScreenModule", function() { return BigScreenModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return DocumentRef; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class DocumentRef {
+    /**
+     * Access the native document.
+     * @return {?}
+     */
+    get nativeDocument() {
+        return document;
+    }
+}
+DocumentRef.decorators = [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"], args: [{
+                providedIn: 'root'
+            },] }
+];
+/** @nocollapse */ DocumentRef.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["defineInjectable"])({ factory: function DocumentRef_Factory() { return new DocumentRef(); }, token: DocumentRef, providedIn: "root" });
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class BigScreenService {
+    /**
+     * @param {?} documentRef
+     */
+    constructor(documentRef) {
+        this.documentRef = documentRef;
+        this.fnMap = [
+            // Object keys
+            [
+                'requestFullscreen',
+                'exitFullscreen',
+                'fullscreenElement',
+                'fullscreenEnabled',
+                'fullscreenchange',
+                'fullscreenerror'
+            ],
+            // New WebKit
+            [
+                'webkitRequestFullscreen',
+                'webkitExitFullscreen',
+                'webkitFullscreenElement',
+                'webkitFullscreenEnabled',
+                'webkitfullscreenchange',
+                'webkitfullscreenerror'
+            ],
+            // Old WebKit (Safari 5.1)
+            [
+                'webkitRequestFullScreen',
+                'webkitCancelFullScreen',
+                'webkitCurrentFullScreenElement',
+                'webkitCancelFullScreen',
+                'webkitfullscreenchange',
+                'webkitfullscreenerror'
+            ],
+            // Mozilla
+            [
+                'mozRequestFullScreen',
+                'mozCancelFullScreen',
+                'mozFullScreenElement',
+                'mozFullScreenEnabled',
+                'mozfullscreenchange',
+                'mozfullscreenerror'
+            ],
+            // MS
+            [
+                'msRequestFullscreen',
+                'msExitFullscreen',
+                'msFullscreenElement',
+                'msFullscreenEnabled',
+                'MSFullscreenChange',
+                'MSFullscreenError'
+            ]
+        ];
+        this.keyboardAllowed = typeof Element !== 'undefined' && 'ALLOW_KEYBOARD_INPUT' in Element;
+        /** @type {?} */
+        const ret = {};
+        /** @type {?} */
+        let val;
+        for (let i = 0; i < this.fnMap.length; i++) {
+            val = this.fnMap[i];
+            if (val && val[1] in this.documentRef.nativeDocument) {
+                for (i = 0; i < val.length; i++) {
+                    // Map everything to the first list of keys
+                    ret[this.fnMap[0][i].toString()] = val[i];
+                }
+                this.fn = ret;
+            }
+        }
+    }
+    /**
+     * @param {?} elem
+     * @return {?}
+     */
+    request(elem) {
+        /** @type {?} */
+        const request = this.fn.requestFullscreen;
+        elem = elem || this.documentRef.nativeDocument.documentElement;
+        // Work around Safari 5.1 bug: reports support for
+        // keyboard in fullscreen even though it doesn't.
+        // Browser sniffing, since the alternative with
+        // setTimeout is even worse.
+        if (/5\.1[.\d]* Safari/.test(navigator.userAgent)) {
+            elem[request]();
+        }
+        else {
+            elem[request](this.keyboardAllowed ? ((/** @type {?} */ (Element))).ALLOW_KEYBOARD_INPUT : {});
+        }
+    }
+    /**
+     * @return {?}
+     */
+    exit() {
+        this.documentRef.nativeDocument[this.fn.exitFullscreen]();
+    }
+    /**
+     * @param {?} elem
+     * @return {?}
+     */
+    toggle(elem) {
+        if (this.isFullscreen()) {
+            this.exit();
+        }
+        else {
+            this.request(elem);
+        }
+    }
+    /**
+     * @param {?} callback
+     * @return {?}
+     */
+    onChange(callback) {
+        this.documentRef.nativeDocument.addEventListener(this.fn.fullscreenchange, callback, false);
+    }
+    /**
+     * @param {?} callback
+     * @return {?}
+     */
+    onError(callback) {
+        this.documentRef.nativeDocument.addEventListener(this.fn.fullscreenerror, callback, false);
+    }
+    /**
+     * @return {?}
+     */
+    isFullscreen() {
+        return Boolean(this.documentRef.nativeDocument[this.fn.fullscreenElement]);
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        // Coerce to boolean in case of old WebKit
+        return Boolean(this.documentRef.nativeDocument[this.fn.fullscreenEnabled]);
+    }
+    /**
+     * @return {?}
+     */
+    getElement() {
+        return this.documentRef.nativeDocument[this.fn.fullscreenElement];
+    }
+}
+BigScreenService.decorators = [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"], args: [{
+                providedIn: 'root'
+            },] }
+];
+/** @nocollapse */
+BigScreenService.ctorParameters = () => [
+    { type: DocumentRef }
+];
+/** @nocollapse */ BigScreenService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["defineInjectable"])({ factory: function BigScreenService_Factory() { return new BigScreenService(Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["inject"])(DocumentRef)); }, token: BigScreenService, providedIn: "root" });
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class BigScreenModule {
+}
+BigScreenModule.decorators = [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"], args: [{
+                declarations: [],
+                imports: [],
+                providers: [
+                    DocumentRef,
+                    BigScreenService
+                ],
+                exports: []
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+
+
+//# sourceMappingURL=angular-bigscreen.js.map
+
+/***/ }),
+
 /***/ "./node_modules/ngx-countdown/fesm2015/ngx-countdown.js":
 /*!**************************************************************!*\
   !*** ./node_modules/ngx-countdown/fesm2015/ngx-countdown.js ***!
@@ -698,7 +922,7 @@ CountdownModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-menu-toggle>\r\n      <ion-icon name=\"menu\" color=\"light\"></ion-icon>\r\n    </ion-menu-toggle>\r\n    <ion-title>Join Meeting</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n  <div ng-app=\"stopwatch\">\r\n    <div class=\"timesetter\" ng-controller=\"timeController as times\">\r\n      <h2>Call End In</h2>\r\n      <countdown\r\n        #cd\r\n        [config]=\"{ leftTime:2400,demand:true}\"\r\n        (event)=\"handleEvent($event)\"\r\n      ></countdown>\r\n    </div>\r\n  </div>\r\n\r\n  <div #agora_local id=\"agora_local\"></div>\r\n\r\n  <div class=\"remote-containers\">\r\n    <div\r\n      class=\"remote_calls\"\r\n      *ngFor=\"let remote of remoteCalls;\"\r\n      [id]=\"remote\"\r\n    ></div>\r\n  </div>\r\n  <ion-input\r\n    class=\"input\"\r\n    autocomplete=\"off\"\r\n    type=\"text\"\r\n    name=\"chanelname\"\r\n    [(ngModel)]=\"Channel_name\"\r\n  ></ion-input>\r\n\r\n  <ion-button (click)=\"startCall()\" (click)=\"cd.resume()\" color=\"dark\"\r\n    >start Call\r\n  </ion-button>\r\n\r\n  <ion-button (click)=\"leave()\" (click)=\"cd.stop()\" color=\"dark\"\r\n    >End Call</ion-button\r\n  >\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-menu-toggle class=\"class1\">\r\n      <ion-icon name=\"menu\" color=\"light\"></ion-icon>\r\n    </ion-menu-toggle>\r\n    <ion-title>Join Meeting</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content>\r\n<div #main>\r\n  <div #container class=\"container\" >\r\n  \t\t<div class=\"row\" style=\"display:flex\">\r\n  \t\t\t<div class=\"col-sm\">\r\n  \t\t\t\t<div style=\"float: left\">\r\n            <ion-button (click)=\"leave()\" color=\"danger\" size=\"small\" shape=\"round\"><ion-icon name=\"call-outline\"></ion-icon>\r\n           </ion-button>\r\n  \t\t\t\t</div>\r\n  \t\t\t</div>\r\n  \t\t\t<div class=\"col-10\">\r\n  \t\t\t\t<div #widgetsContent class=\"middle\">\r\n  \t\t\t\t\t<div [ngClass]=\"'agora_remote'\" *ngFor=\"let remote of remoteCalls\" [id]=\"remote\"\r\n  \t\t\t\t\t\t(click)=\"Toggle_Stream(remote)\" [ngStyle]=\"{'cursor':'pointer'}\"></div>\r\n  \t\t\t\t</div>\r\n  \t\t\t</div>\r\n  \t\t\t<div class=\"col-sm\">\r\n  \t\t\t\t<div style=\"float: right\">\r\n            <ion-button (click)=\"fullScreen()\" color=\"dark\" size=\"small\" shape=\"round\"><ion-icon name=\"images-outline\"></ion-icon>\r\n          </ion-button>\r\n  \t\t\t\t</div>\r\n  \t\t\t</div>\r\n  \t\t</div>\r\n  \t</div>\r\n  <div #agora_local id=\"agora_local\" (click)=\"toggleView()\" ></div>\r\n  </div>\r\n\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -717,10 +941,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var angular_agora_rtc__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angular-agora-rtc */ "./node_modules/angular-agora-rtc/fesm2015/angular-agora-rtc.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var ngx_countdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-countdown */ "./node_modules/ngx-countdown/fesm2015/ngx-countdown.js");
-/* harmony import */ var _messages_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./messages.page */ "./src/app/pages/messages/messages.page.ts");
+/* harmony import */ var angular_bigscreen__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angular-bigscreen */ "./node_modules/angular-bigscreen/fesm2015/angular-bigscreen.js");
+/* harmony import */ var angular_agora_rtc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! angular-agora-rtc */ "./node_modules/angular-agora-rtc/fesm2015/angular-agora-rtc.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var ngx_countdown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-countdown */ "./node_modules/ngx-countdown/fesm2015/ngx-countdown.js");
+/* harmony import */ var _messages_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./messages.page */ "./src/app/pages/messages/messages.page.ts");
 
 
 
@@ -730,11 +955,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const agoraConfig = { AppID: 'c023596a5f6d4c949d9b207101ee8c74' };
+
+const agoraConfig = { AppID: '0b6bb3bd52204bb694a57e4a7d407e17' };
 const routes = [
     {
         path: '',
-        component: _messages_page__WEBPACK_IMPORTED_MODULE_8__["MessagesPage"]
+        component: _messages_page__WEBPACK_IMPORTED_MODULE_9__["MessagesPage"]
     }
 ];
 let MessagesPageModule = class MessagesPageModule {
@@ -743,13 +969,14 @@ MessagesPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+            angular_bigscreen__WEBPACK_IMPORTED_MODULE_5__["BigScreenModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonicModule"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(routes),
-            angular_agora_rtc__WEBPACK_IMPORTED_MODULE_5__["AngularAgoraRtcModule"].forRoot(agoraConfig),
-            ngx_countdown__WEBPACK_IMPORTED_MODULE_7__["CountdownModule"]
+            angular_agora_rtc__WEBPACK_IMPORTED_MODULE_6__["AngularAgoraRtcModule"].forRoot(agoraConfig),
+            ngx_countdown__WEBPACK_IMPORTED_MODULE_8__["CountdownModule"]
         ],
-        declarations: [_messages_page__WEBPACK_IMPORTED_MODULE_8__["MessagesPage"],]
+        declarations: [_messages_page__WEBPACK_IMPORTED_MODULE_9__["MessagesPage"],]
     })
 ], MessagesPageModule);
 
@@ -764,7 +991,7 @@ MessagesPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#agora_local {\n  height: 100px;\n  width: 100px;\n  float: left;\n  position: absolute;\n  margin-left: auto;\n  margin-right: auto;\n  z-index: 2;\n}\n\n.remote-containers div {\n  height: 500px;\n  width: 500px;\n  position: relative;\n  float: left;\n  /* add this */\n  margin-left: 170;\n  margin-top: 300;\n  margin-right: auto;\n  z-index: 1;\n}\n\n.input {\n  margin-top: 400px;\n}\n\ndiv.timesetter {\n  text-align: center;\n  background-color: #07689f;\n  width: 50%;\n  margin: 30px auto;\n  width: 300px;\n}\n\ndiv.timesetter h2 {\n  font-family: \"Josenfin Sans\";\n}\n\nh3.clockFont {\n  font-family: \"Orbitron\", sans-serif;\n  font-size: 3rem;\n}\n\n.class1 {\n  float: left;\n}\n\nion-toolbar {\n  --ion-background-color: #0f4c81 !important;\n}\n\nion-title {\n  color: white;\n  text-align: center;\n}\n\nion-icon {\n  width: 30px;\n  height: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvbWVzc2FnZXMvQzpcXFVzZXJzXFxsZW5vdm9cXERlc2t0b3BcXHByb2plY3RcXGFjdU1FRVQvc3JjXFxhcHBcXHBhZ2VzXFxtZXNzYWdlc1xcbWVzc2FnZXMucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9tZXNzYWdlcy9tZXNzYWdlcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxVQUFBO0FDQ0Y7O0FERUE7RUFDRSxhQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtFQUFhLGFBQUE7RUFDYixnQkFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLFVBQUE7QUNFRjs7QURDQTtFQUNFLGlCQUFBO0FDRUY7O0FEQUE7RUFDRSxrQkFBQTtFQUNBLHlCQUFBO0VBQ0EsVUFBQTtFQUNBLGlCQUFBO0VBQ0EsWUFBQTtBQ0dGOztBREFBO0VBQ0UsNEJBQUE7QUNHRjs7QURBQTtFQUNFLG1DQUFBO0VBQ0EsZUFBQTtBQ0dGOztBREFBO0VBQ0UsV0FBQTtBQ0dGOztBRERBO0VBQ0UsMENBQUE7QUNJRjs7QURGQTtFQUNFLFlBQUE7RUFDQSxrQkFBQTtBQ0tGOztBREhBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNNRiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL21lc3NhZ2VzL21lc3NhZ2VzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNhZ29yYV9sb2NhbCB7XHJcbiAgaGVpZ2h0OiAxMDBweDtcclxuICB3aWR0aDogMTAwcHg7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG4gIG1hcmdpbi1yaWdodDogYXV0bztcclxuICB6LWluZGV4OiAyO1xyXG59XHJcblxyXG4ucmVtb3RlLWNvbnRhaW5lcnMgZGl2IHtcclxuICBoZWlnaHQ6IDUwMHB4O1xyXG4gIHdpZHRoOiA1MDBweDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgZmxvYXQ6IGxlZnQ7IC8qIGFkZCB0aGlzICovXHJcbiAgbWFyZ2luLWxlZnQ6IDE3MDtcclxuICBtYXJnaW4tdG9wOiAzMDA7XHJcbiAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xyXG4gIHotaW5kZXg6IDE7XHJcbn1cclxuXHJcbi5pbnB1dCB7XHJcbiAgbWFyZ2luLXRvcDogNDAwcHg7XHJcbn1cclxuZGl2LnRpbWVzZXR0ZXIge1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDc2ODlmO1xyXG4gIHdpZHRoOiA1MCU7XHJcbiAgbWFyZ2luOiAzMHB4IGF1dG87XHJcbiAgd2lkdGg6IDMwMHB4O1xyXG59XHJcblxyXG5kaXYudGltZXNldHRlciBoMiB7XHJcbiAgZm9udC1mYW1pbHk6ICdKb3NlbmZpbiBTYW5zJztcclxufVxyXG5cclxuaDMuY2xvY2tGb250IHtcclxuICBmb250LWZhbWlseTogJ09yYml0cm9uJywgc2Fucy1zZXJpZjtcclxuICBmb250LXNpemU6IDNyZW07XHJcbn1cclxuXHJcbi5jbGFzczEge1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG59XHJcbmlvbi10b29sYmFyIHtcclxuICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiAjMGY0YzgxICFpbXBvcnRhbnQ7XHJcbn1cclxuaW9uLXRpdGxlIHtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbmlvbi1pY29uIHtcclxuICB3aWR0aDogMzBweDtcclxuICBoZWlnaHQ6IDMwcHg7XHJcbn1cclxuIiwiI2Fnb3JhX2xvY2FsIHtcbiAgaGVpZ2h0OiAxMDBweDtcbiAgd2lkdGg6IDEwMHB4O1xuICBmbG9hdDogbGVmdDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBtYXJnaW4tbGVmdDogYXV0bztcbiAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xuICB6LWluZGV4OiAyO1xufVxuXG4ucmVtb3RlLWNvbnRhaW5lcnMgZGl2IHtcbiAgaGVpZ2h0OiA1MDBweDtcbiAgd2lkdGg6IDUwMHB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGZsb2F0OiBsZWZ0O1xuICAvKiBhZGQgdGhpcyAqL1xuICBtYXJnaW4tbGVmdDogMTcwO1xuICBtYXJnaW4tdG9wOiAzMDA7XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbiAgei1pbmRleDogMTtcbn1cblxuLmlucHV0IHtcbiAgbWFyZ2luLXRvcDogNDAwcHg7XG59XG5cbmRpdi50aW1lc2V0dGVyIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDc2ODlmO1xuICB3aWR0aDogNTAlO1xuICBtYXJnaW46IDMwcHggYXV0bztcbiAgd2lkdGg6IDMwMHB4O1xufVxuXG5kaXYudGltZXNldHRlciBoMiB7XG4gIGZvbnQtZmFtaWx5OiBcIkpvc2VuZmluIFNhbnNcIjtcbn1cblxuaDMuY2xvY2tGb250IHtcbiAgZm9udC1mYW1pbHk6IFwiT3JiaXRyb25cIiwgc2Fucy1zZXJpZjtcbiAgZm9udC1zaXplOiAzcmVtO1xufVxuXG4uY2xhc3MxIHtcbiAgZmxvYXQ6IGxlZnQ7XG59XG5cbmlvbi10b29sYmFyIHtcbiAgLS1pb24tYmFja2dyb3VuZC1jb2xvcjogIzBmNGM4MSAhaW1wb3J0YW50O1xufVxuXG5pb24tdGl0bGUge1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuaW9uLWljb24ge1xuICB3aWR0aDogMzBweDtcbiAgaGVpZ2h0OiAzMHB4O1xufSJdfQ== */"
+module.exports = ".container {\n  margin-left: auto;\n  margin-right: auto;\n  z-index: 5 !important;\n  float: left;\n  position: relative;\n  display: -webkit-box;\n  display: flex;\n}\n\n#agora_local {\n  height: 100%;\n  width: 100%;\n  float: left;\n  position: relative;\n  margin-left: auto;\n  margin-right: auto;\n  z-index: 1 !important;\n}\n\n.agora_remote {\n  background-color: #404040;\n  height: 115px;\n  width: 175px;\n  border: #2d3436 6px solid;\n  position: relative;\n  top: 15px;\n  left: 10%;\n  margin: 5px 5px 5px 5px;\n  display: inline-block;\n  border-radius: 10px;\n}\n\n.video-container {\n  height: 100vh;\n  display: -webkit-box;\n  display: flex;\n  flex-wrap: wrap;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n          flex-direction: row;\n}\n\n.middle {\n  float: left;\n  width: 70vw;\n  height: 150px;\n  overflow: scroll !important;\n  z-index: inherit;\n  /*will change this to hidden later to deny scolling to user*/\n  white-space: nowrap;\n  background-color: #636e72;\n  opacity: 0.7;\n  border-radius: 10px;\n}\n\n.remove_calls {\n  white-space: nowrap;\n}\n\n.input {\n  margin-top: 400px;\n}\n\ndiv.timesetter {\n  text-align: center;\n  background-color: #07689f;\n  width: 70%;\n  margin: 30px auto;\n  width: 300px;\n}\n\ndiv.timesetter h2 {\n  font-family: \"Josenfin Sans\";\n}\n\nh3.clockFont {\n  font-family: \"Orbitron\", sans-serif;\n  font-size: 3rem;\n}\n\n.class1 {\n  float: left;\n}\n\n#right_arrow {\n  font-size: 48px;\n  color: #0984e3;\n  z-index: 5 !important;\n  position: relative;\n  float: left;\n}\n\n#left_arrow {\n  font-size: 48px;\n  float: left;\n  color: #0984e3;\n  z-index: 5 !important;\n  position: relative;\n}\n\nion-toolbar {\n  --ion-background-color: #0f4c81 !important;\n}\n\nion-title {\n  color: white;\n  margin-left: 100px;\n  margin-top: 5px;\n}\n\nion-icon {\n  width: 30px;\n  height: 30px;\n}\n\n.bution {\n  z-index: 5 !important;\n  left: 50%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvbWVzc2FnZXMvQzpcXFVzZXJzXFxsZW5vdm9cXERlc2t0b3BcXHByb2plY3RcXEFjdXBhY2UtaW9uaWMvc3JjXFxhcHBcXHBhZ2VzXFxtZXNzYWdlc1xcbWVzc2FnZXMucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9tZXNzYWdlcy9tZXNzYWdlcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EscUJBQUE7RUFDQSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSxvQkFBQTtFQUFBLGFBQUE7QUNDRjs7QURFQTtFQUNFLFlBQUE7RUFDQSxXQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBO0FDQ0Y7O0FERUE7RUFDRSx5QkFBQTtFQUNBLGFBQUE7RUFDQSxZQUFBO0VBQ0EseUJBQUE7RUFDQSxrQkFBQTtFQUNBLFNBQUE7RUFDQSxTQUFBO0VBQ0EsdUJBQUE7RUFDQSxxQkFBQTtFQUNBLG1CQUFBO0FDQ0Y7O0FERUE7RUFDRSxhQUFBO0VBQ0Esb0JBQUE7RUFBQSxhQUFBO0VBQ0EsZUFBQTtFQUNBLDhCQUFBO0VBQUEsNkJBQUE7VUFBQSxtQkFBQTtBQ0NGOztBREVBO0VBQ0UsV0FBQTtFQUNBLFdBQUE7RUFDQSxhQUFBO0VBQ0EsMkJBQUE7RUFDQSxnQkFBQTtFQUNBLDREQUFBO0VBQ0EsbUJBQUE7RUFDQSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxtQkFBQTtBQ0NGOztBREVBO0VBQ0UsbUJBQUE7QUNDRjs7QURFQTtFQUNFLGlCQUFBO0FDQ0Y7O0FEQ0E7RUFDRSxrQkFBQTtFQUNBLHlCQUFBO0VBQ0EsVUFBQTtFQUNBLGlCQUFBO0VBQ0EsWUFBQTtBQ0VGOztBRENBO0VBQ0UsNEJBQUE7QUNFRjs7QURDQTtFQUNFLG1DQUFBO0VBQ0EsZUFBQTtBQ0VGOztBRENBO0VBQ0UsV0FBQTtBQ0VGOztBRENBO0VBQ0UsZUFBQTtFQUNBLGNBQUE7RUFDQSxxQkFBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtBQ0VGOztBREFBO0VBQ0UsZUFBQTtFQUNBLFdBQUE7RUFDQSxjQUFBO0VBQ0EscUJBQUE7RUFDQSxrQkFBQTtBQ0dGOztBRERBO0VBQ0UsMENBQUE7QUNJRjs7QURGQTtFQUNFLFlBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7QUNLRjs7QURIQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FDTUY7O0FESEE7RUFDRSxxQkFBQTtFQUNBLFNBQUE7QUNNRiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL21lc3NhZ2VzL21lc3NhZ2VzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXIge1xyXG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG4gIG1hcmdpbi1yaWdodDogYXV0bztcclxuICB6LWluZGV4OiA1ICFpbXBvcnRhbnQ7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbn1cclxuXHJcbiNhZ29yYV9sb2NhbCB7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBtYXJnaW4tbGVmdDogYXV0bztcclxuICBtYXJnaW4tcmlnaHQ6IGF1dG87XHJcbiAgei1pbmRleDogMSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uYWdvcmFfcmVtb3RlIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDA0MDQwO1xyXG4gIGhlaWdodDogMTE1cHg7XHJcbiAgd2lkdGg6IDE3NXB4O1xyXG4gIGJvcmRlcjogIzJkMzQzNiA2cHggc29saWQ7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHRvcDogMTVweDtcclxuICBsZWZ0OiAxMCU7XHJcbiAgbWFyZ2luOiA1cHggNXB4IDVweCA1cHg7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbn1cclxuXHJcbi52aWRlby1jb250YWluZXIge1xyXG4gIGhlaWdodDogMTAwdmg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcclxufVxyXG5cclxuLm1pZGRsZSB7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgd2lkdGg6IDcwdnc7XHJcbiAgaGVpZ2h0OiAxNTBweDtcclxuICBvdmVyZmxvdzogc2Nyb2xsICFpbXBvcnRhbnQ7XHJcbiAgei1pbmRleDogaW5oZXJpdDtcclxuICAvKndpbGwgY2hhbmdlIHRoaXMgdG8gaGlkZGVuIGxhdGVyIHRvIGRlbnkgc2NvbGxpbmcgdG8gdXNlciovXHJcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNjM2ZTcyO1xyXG4gIG9wYWNpdHk6IDAuNztcclxuICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG59XHJcblxyXG4ucmVtb3ZlX2NhbGxzIHtcclxuICB3aGl0ZS1zcGFjZTogbm93cmFwO1xyXG59XHJcblxyXG4uaW5wdXQge1xyXG4gIG1hcmdpbi10b3A6IDQwMHB4O1xyXG59XHJcbmRpdi50aW1lc2V0dGVyIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzA3Njg5ZjtcclxuICB3aWR0aDogNzAlO1xyXG4gIG1hcmdpbjogMzBweCBhdXRvO1xyXG4gIHdpZHRoOiAzMDBweDtcclxufVxyXG5cclxuZGl2LnRpbWVzZXR0ZXIgaDIge1xyXG4gIGZvbnQtZmFtaWx5OiAnSm9zZW5maW4gU2Fucyc7XHJcbn1cclxuXHJcbmgzLmNsb2NrRm9udCB7XHJcbiAgZm9udC1mYW1pbHk6ICdPcmJpdHJvbicsIHNhbnMtc2VyaWY7XHJcbiAgZm9udC1zaXplOiAzcmVtO1xyXG59XHJcblxyXG4uY2xhc3MxIHtcclxuICBmbG9hdDogbGVmdDtcclxufVxyXG5cclxuI3JpZ2h0X2Fycm93IHtcclxuICBmb250LXNpemU6IDQ4cHg7XHJcbiAgY29sb3I6ICMwOTg0ZTM7XHJcbiAgei1pbmRleDogNSAhaW1wb3J0YW50O1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBmbG9hdDogbGVmdDtcclxufVxyXG4jbGVmdF9hcnJvdyB7XHJcbiAgZm9udC1zaXplOiA0OHB4O1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIGNvbG9yOiAjMDk4NGUzO1xyXG4gIHotaW5kZXg6IDUgIWltcG9ydGFudDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuaW9uLXRvb2xiYXIge1xyXG4gIC0taW9uLWJhY2tncm91bmQtY29sb3I6ICMwZjRjODEgIWltcG9ydGFudDtcclxufVxyXG5pb24tdGl0bGUge1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBtYXJnaW4tbGVmdDogMTAwcHg7XHJcbiAgbWFyZ2luLXRvcDogNXB4O1xyXG59XHJcbmlvbi1pY29uIHtcclxuICB3aWR0aDogMzBweDtcclxuICBoZWlnaHQ6IDMwcHg7XHJcbn1cclxuXHJcbi5idXRpb24ge1xyXG4gIHotaW5kZXg6IDUgIWltcG9ydGFudDtcclxuICBsZWZ0OiA1MCU7XHJcbn1cclxuIiwiLmNvbnRhaW5lciB7XG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICBtYXJnaW4tcmlnaHQ6IGF1dG87XG4gIHotaW5kZXg6IDUgIWltcG9ydGFudDtcbiAgZmxvYXQ6IGxlZnQ7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgZGlzcGxheTogZmxleDtcbn1cblxuI2Fnb3JhX2xvY2FsIHtcbiAgaGVpZ2h0OiAxMDAlO1xuICB3aWR0aDogMTAwJTtcbiAgZmxvYXQ6IGxlZnQ7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbiAgei1pbmRleDogMSAhaW1wb3J0YW50O1xufVxuXG4uYWdvcmFfcmVtb3RlIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzQwNDA0MDtcbiAgaGVpZ2h0OiAxMTVweDtcbiAgd2lkdGg6IDE3NXB4O1xuICBib3JkZXI6ICMyZDM0MzYgNnB4IHNvbGlkO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogMTVweDtcbiAgbGVmdDogMTAlO1xuICBtYXJnaW46IDVweCA1cHggNXB4IDVweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBib3JkZXItcmFkaXVzOiAxMHB4O1xufVxuXG4udmlkZW8tY29udGFpbmVyIHtcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwO1xuICBmbGV4LWRpcmVjdGlvbjogcm93O1xufVxuXG4ubWlkZGxlIHtcbiAgZmxvYXQ6IGxlZnQ7XG4gIHdpZHRoOiA3MHZ3O1xuICBoZWlnaHQ6IDE1MHB4O1xuICBvdmVyZmxvdzogc2Nyb2xsICFpbXBvcnRhbnQ7XG4gIHotaW5kZXg6IGluaGVyaXQ7XG4gIC8qd2lsbCBjaGFuZ2UgdGhpcyB0byBoaWRkZW4gbGF0ZXIgdG8gZGVueSBzY29sbGluZyB0byB1c2VyKi9cbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzYzNmU3MjtcbiAgb3BhY2l0eTogMC43O1xuICBib3JkZXItcmFkaXVzOiAxMHB4O1xufVxuXG4ucmVtb3ZlX2NhbGxzIHtcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbn1cblxuLmlucHV0IHtcbiAgbWFyZ2luLXRvcDogNDAwcHg7XG59XG5cbmRpdi50aW1lc2V0dGVyIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDc2ODlmO1xuICB3aWR0aDogNzAlO1xuICBtYXJnaW46IDMwcHggYXV0bztcbiAgd2lkdGg6IDMwMHB4O1xufVxuXG5kaXYudGltZXNldHRlciBoMiB7XG4gIGZvbnQtZmFtaWx5OiBcIkpvc2VuZmluIFNhbnNcIjtcbn1cblxuaDMuY2xvY2tGb250IHtcbiAgZm9udC1mYW1pbHk6IFwiT3JiaXRyb25cIiwgc2Fucy1zZXJpZjtcbiAgZm9udC1zaXplOiAzcmVtO1xufVxuXG4uY2xhc3MxIHtcbiAgZmxvYXQ6IGxlZnQ7XG59XG5cbiNyaWdodF9hcnJvdyB7XG4gIGZvbnQtc2l6ZTogNDhweDtcbiAgY29sb3I6ICMwOTg0ZTM7XG4gIHotaW5kZXg6IDUgIWltcG9ydGFudDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBmbG9hdDogbGVmdDtcbn1cblxuI2xlZnRfYXJyb3cge1xuICBmb250LXNpemU6IDQ4cHg7XG4gIGZsb2F0OiBsZWZ0O1xuICBjb2xvcjogIzA5ODRlMztcbiAgei1pbmRleDogNSAhaW1wb3J0YW50O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbmlvbi10b29sYmFyIHtcbiAgLS1pb24tYmFja2dyb3VuZC1jb2xvcjogIzBmNGM4MSAhaW1wb3J0YW50O1xufVxuXG5pb24tdGl0bGUge1xuICBjb2xvcjogd2hpdGU7XG4gIG1hcmdpbi1sZWZ0OiAxMDBweDtcbiAgbWFyZ2luLXRvcDogNXB4O1xufVxuXG5pb24taWNvbiB7XG4gIHdpZHRoOiAzMHB4O1xuICBoZWlnaHQ6IDMwcHg7XG59XG5cbi5idXRpb24ge1xuICB6LWluZGV4OiA1ICFpbXBvcnRhbnQ7XG4gIGxlZnQ6IDUwJTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -784,6 +1011,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../services/data.service */ "./src/app/services/data.service.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../services/http.service */ "./src/app/services/http.service.ts");
+/* harmony import */ var _services_alert_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../services/alert.service */ "./src/app/services/alert.service.ts");
+/* harmony import */ var _services_toast_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../services/toast.service */ "./src/app/services/toast.service.ts");
+/* harmony import */ var angular_bigscreen__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! angular-bigscreen */ "./node_modules/angular-bigscreen/fesm2015/angular-bigscreen.js");
+
+
+
 
 
 
@@ -794,30 +1027,57 @@ __webpack_require__.r(__webpack_exports__);
 
 let MessagesPage = class MessagesPage {
     // Add
-    constructor(agoraService, renderer, data, auth, httpservice) {
+    constructor(bigScreenService, agoraService, renderer, data, toastService, auth, alert, httpservice) {
+        this.bigScreenService = bigScreenService;
         this.agoraService = agoraService;
         this.renderer = renderer;
         this.data = data;
+        this.toastService = toastService;
         this.auth = auth;
+        this.alert = alert;
         this.httpservice = httpservice;
+        this.mainScreen = 0;
+        this.localCallId = 'agora_local';
+        this.remoteStreams = {};
         this.remoteCalls = [];
+        this.LocalStreamID = this.localCallId;
         this.agoraService.createClient();
+    }
+    scrollRight() {
+        this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft + 250), behavior: 'smooth' });
+    }
+    scrollLeft() {
+        this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft - 250), behavior: 'smooth' });
     }
     // Add
     startCall() {
-        this.data_object = this.data.getData();
-        console.log(this.data_object.channel_name, this.data_object.room_id);
-        this.agoraService.client.join(null, this.data_object.channel_name, this.data_object.room_id, (uid) => {
-            this.localStream = this.agoraService.createStream(uid, true, null, null, true, false);
-            this.localStream.setVideoProfile('720p_3');
-            this.subscribeToStreams();
-        });
+        this.dataObject = this.data.getData();
+        console.log(this.dataObject);
+        if (this.dataObject.meeting_status == "0") {
+            if (this.dataObject.host_name == this.authUser.name) {
+                this.channelName = this.dataObject.channel_name;
+                this.UID = this.dataObject.host_room_id;
+            }
+            else {
+                this.channelName = this.dataObject.channel_name;
+                this.UID = this.dataObject.room_id;
+            }
+            this.agoraService.client.join(null, this.channelName, this.UID, (uid) => {
+                this.localStream = this.agoraService.createStream(this.UID, true, null, null, true, false);
+                this.localStream.setVideoProfile('720p_3');
+                this.subscribeToStreams();
+            });
+        }
+        else {
+            this.toastService.presentToast("meeting ended");
+        }
     }
     // Add
     subscribeToStreams() {
         this.localStream.init(() => {
             console.log("getUserMedia successfully");
             this.localStream.play('agora_local');
+            this.remoteStreams["agora_local"] = this.localStream;
             this.agoraService.client.publish(this.localStream, function (err) {
                 console.log("Publish local stream error: " + err);
             });
@@ -840,6 +1100,7 @@ let MessagesPage = class MessagesPage {
         });
         // Add
         this.agoraService.client.on('stream-added', (evt) => {
+            this.toastService.presentToast('stream added');
             const stream = evt.stream;
             this.agoraService.client.subscribe(stream, (err) => {
                 console.log("Subscribe stream failed", err);
@@ -847,7 +1108,9 @@ let MessagesPage = class MessagesPage {
         });
         // Add
         this.agoraService.client.on('stream-subscribed', (evt) => {
+            this.toastService.presentToast('subscribed to a stream');
             const stream = evt.stream;
+            this.remoteStreams[`agora_remote${stream.getId()}`] = stream;
             if (!this.remoteCalls.includes(`agora_remote${stream.getId()}`))
                 this.remoteCalls.push(`agora_remote${stream.getId()}`);
             setTimeout(() => stream.play(`agora_remote${stream.getId()}`), 2000);
@@ -861,8 +1124,13 @@ let MessagesPage = class MessagesPage {
         });
         // Add
         this.agoraService.client.on('peer-leave', (evt) => {
+            this.toastService.presentToast('someone left the chat');
             const stream = evt.stream;
             if (stream) {
+                if (this.remoteStreams[this.localCallId] != this.localStream) {
+                    this.Toggle(this.localCallId, this.LocalStreamID);
+                }
+                delete this.remoteStreams[evt.uid];
                 stream.stop();
                 this.remoteCalls = this.remoteCalls.filter(call => call === `#agora_remote${stream.getId()}`);
                 console.log(`${evt.uid} left from this channel`);
@@ -871,19 +1139,35 @@ let MessagesPage = class MessagesPage {
         this.adjust();
     }
     leave() {
-        this.agoraService.client.leave(() => {
-            console.log("Leavel channel successfully");
-        }, (err) => {
-            console.log("Leave channel failed");
+        this.alert.presentAlertConfirm("Leaving", "are you sure you want to leave you cant enter again").then((res) => {
+            console.log(res);
+            if (res.role == "okay") {
+                this.localStream.close();
+                this.agoraService.client.leave(() => {
+                    this.toastService.presentToast('left channel');
+                    console.log("Leavel channel successfully");
+                }, (err) => {
+                    console.log("Leave channel failed");
+                });
+                console.log("hello");
+                for (let child of this.element.nativeElement.children) {
+                    this.renderer.removeChild(this.element.nativeElement, child);
+                }
+                for (let child of this.container.nativeElement.children) {
+                    this.renderer.removeChild(this.container.nativeElement, child);
+                }
+                let data = { "id": this.dataObject.id, "room_id": this.dataObject.room_id };
+                console.log(data);
+                this.httpservice.post("update_meeting_status.php", data).subscribe((res) => {
+                    console.log("response");
+                    console.log(res);
+                });
+                console.log(this.remoteCalls);
+            }
+            else {
+                console.log("continue");
+            }
         });
-        console.log("hello");
-        for (let child of this.element.nativeElement.children) {
-            this.renderer.removeChild(this.element.nativeElement, child);
-            this.httpservice.post("update_meeting_status.php", { "id": this.authUser.ID, "room_id": this.data_object.room_id }).subscribe((res) => {
-                console.log(res);
-            });
-        }
-        console.log(this.remoteCalls);
     }
     adjust() {
         this.renderer.setStyle(this.container.nativeElement, "position", "absolute");
@@ -897,13 +1181,62 @@ let MessagesPage = class MessagesPage {
             console.log(typeof this.authUser);
         });
         console.log(this.authUser);
+        this.startCall();
+    }
+    toggleView() {
+        let data = "agora_local";
+        console.log(this.remoteStreams);
+        console.log(this.remoteStreams[data]);
+    }
+    Toggle(local, remote) {
+        console.log(this.remoteStreams[local]);
+        console.log(this.remoteStreams[remote]);
+        this.remoteStreams[local].stop();
+        this.remoteStreams[local].play(remote);
+        this.remoteStreams[remote].stop();
+        this.remoteStreams[remote].play(local);
+        let stream = this.remoteStreams[local];
+        this.remoteStreams[local] = this.remoteStreams[remote];
+        this.remoteStreams[remote] = stream;
+    }
+    Toggle_Stream(remoteId) {
+        console.log(remoteId);
+        if (this.remoteStreams[this.localCallId] != this.localStream) {
+            if (this.LocalStreamID != remoteId) {
+                this.Toggle(this.localCallId, this.LocalStreamID);
+                this.LocalStreamID = this.localCallId;
+                this.Toggle(this.localCallId, remoteId);
+                this.LocalStreamID = remoteId;
+            }
+            else {
+                this.Toggle(this.localCallId, remoteId);
+                this.LocalStreamID = this.localCallId;
+            }
+        }
+        else {
+            this.Toggle(this.localCallId, remoteId);
+            this.LocalStreamID = remoteId;
+        }
+    }
+    fullScreen() {
+        if (this.mainScreen) {
+            this.bigScreenService.exit();
+            this.mainScreen = 0;
+        }
+        else {
+            this.bigScreenService.request(this.main.nativeElement);
+            this.mainScreen = 1;
+        }
     }
 };
 MessagesPage.ctorParameters = () => [
+    { type: angular_bigscreen__WEBPACK_IMPORTED_MODULE_8__["BigScreenService"] },
     { type: angular_agora_rtc__WEBPACK_IMPORTED_MODULE_2__["AngularAgoraRtcService"] },
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"] },
     { type: _services_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"] },
+    { type: _services_toast_service__WEBPACK_IMPORTED_MODULE_7__["ToastService"] },
     { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"] },
+    { type: _services_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"] },
     { type: _services_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -911,21 +1244,91 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
 ], MessagesPage.prototype, "element", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('remote_calls', { static: false }),
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('main', { static: false }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+], MessagesPage.prototype, "main", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('container', { static: false }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
 ], MessagesPage.prototype, "container", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('widgetsContent', { read: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], static: true }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+], MessagesPage.prototype, "widgetsContent", void 0);
 MessagesPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-messages',
         template: __webpack_require__(/*! raw-loader!./messages.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/messages/messages.page.html"),
         styles: [__webpack_require__(/*! ./messages.page.scss */ "./src/app/pages/messages/messages.page.scss")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [angular_agora_rtc__WEBPACK_IMPORTED_MODULE_2__["AngularAgoraRtcService"],
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [angular_bigscreen__WEBPACK_IMPORTED_MODULE_8__["BigScreenService"],
+        angular_agora_rtc__WEBPACK_IMPORTED_MODULE_2__["AngularAgoraRtcService"],
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"],
         _services_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"],
+        _services_toast_service__WEBPACK_IMPORTED_MODULE_7__["ToastService"],
         _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
+        _services_alert_service__WEBPACK_IMPORTED_MODULE_6__["AlertService"],
         _services_http_service__WEBPACK_IMPORTED_MODULE_5__["HttpService"]])
 ], MessagesPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/alert.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/alert.service.ts ***!
+  \*******************************************/
+/*! exports provided: AlertService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AlertService", function() { return AlertService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+let AlertService = class AlertService {
+    constructor(alertController) {
+        this.alertController = alertController;
+    }
+    presentAlertConfirm(header, message) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            let choice;
+            const alert = yield this.alertController.create({
+                header: header,
+                message: message,
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        role: 'cancel'
+                    },
+                    {
+                        text: 'Okay',
+                        role: 'okay'
+                    }
+                ]
+            });
+            yield alert.present();
+            yield alert.onDidDismiss().then(data => {
+                choice = data;
+            });
+            return choice;
+        });
+    }
+};
+AlertService.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
+];
+AlertService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
+], AlertService);
 
 
 
@@ -961,6 +1364,50 @@ DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
 ], DataService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/toast.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/toast.service.ts ***!
+  \*******************************************/
+/*! exports provided: ToastService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToastService", function() { return ToastService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+let ToastService = class ToastService {
+    constructor(toastController) {
+        this.toastController = toastController;
+    }
+    presentToast(infoMessage) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const toast = yield this.toastController.create({
+                message: infoMessage,
+                duration: 2000
+            });
+            toast.present();
+        });
+    }
+};
+ToastService.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+];
+ToastService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]])
+], ToastService);
 
 
 

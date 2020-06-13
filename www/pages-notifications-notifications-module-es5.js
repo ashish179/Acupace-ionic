@@ -1531,7 +1531,7 @@ var MomentModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar class=\"class1\">\r\n    <ion-menu-toggle class=\"class1\">\r\n      <ion-icon name=\"menu\" color=\"light\"></ion-icon>\r\n    </ion-menu-toggle>\r\n    <ion-title>Host Meeting</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding=\"true\">\r\n  <br />\r\n  <ion-card>\r\n    <ion-card-header color=\"secondary\" class=\"login-card-header\">\r\n      <ion-card-title>Start your first meeting</ion-card-title>\r\n    </ion-card-header>\r\n    <ion-card-content>\r\n      <form padding-right [formGroup]=\"inviteForm\">\r\n        <ion-item lines=\"inset\">\r\n          <ion-label position=\"floating\">Email</ion-label>\r\n          <ion-input\r\n            type=\"email\"\r\n            class=\"form-control\"\r\n            placeholder=\"Please Enter the attendee_email\"\r\n            formControlName=\"attendee_email\"\r\n          ></ion-input>\r\n        </ion-item>\r\n        <ion-item lines=\"inset\">\r\n          <ion-label position=\"floating\">channel name</ion-label>\r\n          <ion-input\r\n            class=\"form-control\"\r\n            placeholder=\"Please Enter the channel_name\"\r\n            formControlName=\"channel_name\"\r\n          ></ion-input>\r\n        </ion-item>\r\n        <ion-item lines=\"inset\">\r\n          <ion-datetime\r\n            type=\"datetime\"\r\n            class=\"form-control\"\r\n            formControlName=\"host_meeting_start_time\"\r\n            displayFormat=\"YYYY-MM-DDTHH:mm:00\"\r\n            placeholder=\"Enter start time\"\r\n          ></ion-datetime>\r\n        </ion-item>\r\n        <ion-item lines=\"inset\">\r\n          <ion-datetime\r\n            type=\"datetime\"\r\n            class=\"form-control\"\r\n            formControlName=\"host_meeting_end_time\"\r\n            displayFormat=\"YYYY-MM-DDTHH:mm:00\"\r\n            placeholder=\"Enter end time\"\r\n          ></ion-datetime>\r\n        </ion-item>\r\n        <ion-item lines=\"none\" class=\"ion-item-right-margin\">\r\n          <ion-button size=\"default\" slot=\"end\" type=\"submit\" (click)=\"Invite()\"\r\n            >Invite</ion-button\r\n          >\r\n        </ion-item>\r\n      </form>\r\n    </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-menu-toggle class=\"class1\">\r\n      <ion-icon name=\"menu\" color=\"light\"></ion-icon>\r\n    </ion-menu-toggle>\r\n    <ion-title>Host Meeting</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n<ion-content padding=\"true\">\r\n  <br />\r\n  <ion-card>\r\n    <ion-card-header color=\"light\" class=\"login-card-header\">\r\n      <ion-card-title>Start your first meeting</ion-card-title>\r\n    </ion-card-header>\r\n    <ion-card-content>\r\n      <form padding-right [formGroup]=\"inviteForm\">\r\n        <ion-item>\r\n          <div\r\n            formArrayName=\"attendee_email\"\r\n            *ngFor=\"let email of attendee_email.controls; index as idx\"\r\n          >\r\n            <ion-label position=\"floating\">Email</ion-label>\r\n            <ion-input\r\n              type=\"email\"\r\n              class=\"form-control\"\r\n              placeholder=\"Please Enter the attendee_email\"\r\n              [formControlName]=\"idx\"\r\n            ></ion-input>\r\n            <ion-button shape=\"round\" (click)=\"deleteNameField(idx)\" color=\"danger\"\r\n              >-</ion-button\r\n            >\r\n          </div>\r\n          <ion-button shape=\"round\" (click)=\"addNameField()\"\r\n            >+</ion-button\r\n          >\r\n        </ion-item>\r\n        <ion-item lines=\"inset\">\r\n          <ion-label position=\"floating\">channel name</ion-label>\r\n          <ion-input\r\n            class=\"form-control\"\r\n            placeholder=\"Please Enter the channel_name\"\r\n            formControlName=\"channel_name\"\r\n          ></ion-input>\r\n        </ion-item>\r\n        <ion-item lines=\"inset\">\r\n          <ion-datetime\r\n            type=\"datetime\"\r\n            class=\"form-control\"\r\n            formControlName=\"host_meeting_start_time\"\r\n            displayFormat=\"YYYY-MM-DDTHH:mm:00\"\r\n            placeholder=\"Enter start time\"\r\n          ></ion-datetime>\r\n        </ion-item>\r\n        <ion-item lines=\"inset\">\r\n          <ion-datetime\r\n            type=\"datetime\"\r\n            class=\"form-control\"\r\n            formControlName=\"host_meeting_end_time\"\r\n            displayFormat=\"YYYY-MM-DDTHH:mm:00\"\r\n            placeholder=\"Enter end time\"\r\n          ></ion-datetime>\r\n        </ion-item>\r\n        <ion-item lines=\"none\" class=\"ion-item-right-margin\">\r\n          <ion-button size=\"default\" slot=\"end\" type=\"submit\" (click)=\"Invite()\"\r\n            >Invite</ion-button\r\n          >\r\n        </ion-item>\r\n      </form>\r\n    </ion-card-content>\r\n  </ion-card>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -1601,7 +1601,7 @@ var NotificationsPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".class1 {\n  float: left;\n}\n\nion-toolbar {\n  --ion-background-color: #0f4c81 !important;\n}\n\nion-title {\n  color: white;\n  text-align: center;\n}\n\nion-icon {\n  width: 30px;\n  height: 30px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvbm90aWZpY2F0aW9ucy9DOlxcVXNlcnNcXGxlbm92b1xcRGVza3RvcFxccHJvamVjdFxcYWN1TUVFVC9zcmNcXGFwcFxccGFnZXNcXG5vdGlmaWNhdGlvbnNcXG5vdGlmaWNhdGlvbnMucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9ub3RpZmljYXRpb25zL25vdGlmaWNhdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBQTtBQ0NGOztBRENBO0VBQ0UsMENBQUE7QUNFRjs7QURBQTtFQUNFLFlBQUE7RUFDQSxrQkFBQTtBQ0dGOztBRERBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNJRiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL25vdGlmaWNhdGlvbnMvbm90aWZpY2F0aW9ucy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2xhc3MxIHtcclxuICBmbG9hdDogbGVmdDtcclxufVxyXG5pb24tdG9vbGJhciB7XHJcbiAgLS1pb24tYmFja2dyb3VuZC1jb2xvcjogIzBmNGM4MSAhaW1wb3J0YW50O1xyXG59XHJcbmlvbi10aXRsZSB7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5pb24taWNvbiB7XHJcbiAgd2lkdGg6IDMwcHg7XHJcbiAgaGVpZ2h0OiAzMHB4O1xyXG59XHJcbiIsIi5jbGFzczEge1xuICBmbG9hdDogbGVmdDtcbn1cblxuaW9uLXRvb2xiYXIge1xuICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiAjMGY0YzgxICFpbXBvcnRhbnQ7XG59XG5cbmlvbi10aXRsZSB7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG5pb24taWNvbiB7XG4gIHdpZHRoOiAzMHB4O1xuICBoZWlnaHQ6IDMwcHg7XG59Il19 */"
+module.exports = ".class1 {\n  float: left;\n}\n\nion-toolbar {\n  --ion-background-color: #0f4c81 !important;\n}\n\nion-title {\n  color: white;\n  margin-left: 100px;\n  margin-top: 5px;\n}\n\nion-icon {\n  width: 30px;\n  height: 30px;\n}\n\nion-button {\n  --background: #0f4c81;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcGFnZXMvbm90aWZpY2F0aW9ucy9DOlxcVXNlcnNcXGxlbm92b1xcRGVza3RvcFxccHJvamVjdFxcQWN1cGFjZS1pb25pYy9zcmNcXGFwcFxccGFnZXNcXG5vdGlmaWNhdGlvbnNcXG5vdGlmaWNhdGlvbnMucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9ub3RpZmljYXRpb25zL25vdGlmaWNhdGlvbnMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBQTtBQ0NGOztBRENBO0VBQ0UsMENBQUE7QUNFRjs7QURBQTtFQUNFLFlBQUE7RUFFQSxrQkFBQTtFQUNBLGVBQUE7QUNFRjs7QURBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FDR0Y7O0FEQUE7RUFDRSxxQkFBQTtBQ0dGIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvbm90aWZpY2F0aW9ucy9ub3RpZmljYXRpb25zLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jbGFzczEge1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG59XHJcbmlvbi10b29sYmFyIHtcclxuICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiAjMGY0YzgxICFpbXBvcnRhbnQ7XHJcbn1cclxuaW9uLXRpdGxlIHtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgLy8gdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIG1hcmdpbi1sZWZ0OiAxMDBweDtcclxuICBtYXJnaW4tdG9wOiA1cHg7XHJcbn1cclxuaW9uLWljb24ge1xyXG4gIHdpZHRoOiAzMHB4O1xyXG4gIGhlaWdodDogMzBweDtcclxufVxyXG5cclxuaW9uLWJ1dHRvbiB7XHJcbiAgLS1iYWNrZ3JvdW5kOiAjMGY0YzgxO1xyXG59XHJcbiIsIi5jbGFzczEge1xuICBmbG9hdDogbGVmdDtcbn1cblxuaW9uLXRvb2xiYXIge1xuICAtLWlvbi1iYWNrZ3JvdW5kLWNvbG9yOiAjMGY0YzgxICFpbXBvcnRhbnQ7XG59XG5cbmlvbi10aXRsZSB7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgbWFyZ2luLWxlZnQ6IDEwMHB4O1xuICBtYXJnaW4tdG9wOiA1cHg7XG59XG5cbmlvbi1pY29uIHtcbiAgd2lkdGg6IDMwcHg7XG4gIGhlaWdodDogMzBweDtcbn1cblxuaW9uLWJ1dHRvbiB7XG4gIC0tYmFja2dyb3VuZDogIzBmNGM4MTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -1622,6 +1622,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../services/data.service */ "./src/app/services/data.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _services_toast_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../services/toast.service */ "./src/app/services/toast.service.ts");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_7__);
+
+
+
 
 
 
@@ -1640,13 +1645,12 @@ var NotificationsPage = /** @class */ (function () {
         this.data = data;
         this.submitAttempt = false;
         this.inviteForm = this.formBuilder.group({
-            attendee_email: [
-                '',
-                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([
+            attendee_email: new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormArray"]([
+                new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([
                     _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('^[a-zA-Z0-9.]+[a-zA-Z0-9.%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$'),
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required,
-                ]),
-            ],
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required
+                ]))
+            ]),
             host_meeting_start_time: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required])],
             host_meeting_end_time: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required])],
             channel_name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required])],
@@ -1664,9 +1668,18 @@ var NotificationsPage = /** @class */ (function () {
             .subscribe(function (res) {
             _this.list = res.result;
             console.log(_this.list);
+            _this.list.reduce(function (arr, item) {
+                var exists = !!arr.find(function (x) { return x.host_room_id === item.host_room_id; });
+                if (!exists) {
+                    arr.push(item);
+                }
+                return arr;
+            }, []);
+            console.log(_this.list);
         });
     };
     NotificationsPage.prototype.Invite = function () {
+        var _this = this;
         this.submitAttempt = true;
         console.log(this.inviteForm);
         if (this.inviteForm.valid) {
@@ -1677,18 +1690,41 @@ var NotificationsPage = /** @class */ (function () {
                 host_email: this.authUser.user_email,
                 role: 'host',
                 host_device_details: 'device_name',
-                host_meeting_start_time: this.inviteForm.get('host_meeting_start_time')
-                    .value,
-                host_meeting_end_time: this.inviteForm.get('host_meeting_end_time')
-                    .value,
-                attendee_email: [this.inviteForm.get('attendee_email').value],
+                host_meeting_start_time: moment__WEBPACK_IMPORTED_MODULE_7__(this.inviteForm.get('host_meeting_start_time')
+                    .value).format("YYYY-MM-DDTHH:mm"),
+                host_meeting_end_time: moment__WEBPACK_IMPORTED_MODULE_7__(this.inviteForm.get('host_meeting_end_time')
+                    .value).format("YYYY-MM-DDTHH:mm"),
+                attendee_email: this.attendee_email.value,
             };
             console.log(bodystring);
-            this.webservice.AddInvitation(bodystring).subscribe();
+            this.webservice.AddInvitation(bodystring).subscribe(function (res) {
+                _this.toastService.presentToast(res["message"]);
+            }, function (error) {
+                _this.toastService.presentToast('Network Issue.');
+            });
         }
         else {
             console.log('error');
         }
+    };
+    Object.defineProperty(NotificationsPage.prototype, "attendee_email", {
+        get: function () {
+            return this.inviteForm.get('attendee_email');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    NotificationsPage.prototype.addNameField = function () {
+        this.attendee_email.push(new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].compose([
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].pattern('^[a-zA-Z0-9.]+[a-zA-Z0-9.%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$'),
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__["Validators"].required
+        ])));
+    };
+    NotificationsPage.prototype.deleteNameField = function (index) {
+        if (this.attendee_email.length !== 1) {
+            this.attendee_email.removeAt(index);
+        }
+        console.log(this.attendee_email.length);
     };
     NotificationsPage.ctorParameters = function () { return [
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"] },

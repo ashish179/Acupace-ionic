@@ -4,7 +4,7 @@ ion-toolbar {
 ion-title {
   color: white;
   //text-align: center;
-  margin-left:80px;
+  margin-left:115px;
   margin-top:5px;
 }
 ion-icon {
@@ -14,4 +14,10 @@ ion-icon {
 .class1{
   float: left;
 
+}
+
+.copyright{
+  font-style: arial;
+  text-decoration: underline;
+  text-align-last: center;
 }

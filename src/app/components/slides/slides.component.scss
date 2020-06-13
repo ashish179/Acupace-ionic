@@ -10,7 +10,7 @@ ion-slide {
   }
 }
 
-ion-slides {
+.head{
   background-image: url('https://images.pexels.com/photos/4226263/pexels-photo-4226263.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
 }
 
@@ -19,4 +19,20 @@ img {
   width: 100px;
   padding-top: 70px;
   padding-right: 40px;
+  position: relative;
+}
+.logo{
+  margin-left: 110px;
+  margin-top:-50px;
+  position: absolute;
+  height: 180px;
+  width: 180px;
+}
+
+.logoname {
+  margin-top: 100px;
+  margin-left: 140px;
+  color: rgb(8, 29, 124);
+  font-size: 125%;
+  position: absolute;
 }

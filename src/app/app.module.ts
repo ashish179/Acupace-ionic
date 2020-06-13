@@ -8,6 +8,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { Network } from '@ionic-native/network/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { Camera } from '@ionic-native/camera/ngx';
     StatusBar,
     Diagnostic,
     Camera,
+    Network,
     SplashScreen,
     HttpClientModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

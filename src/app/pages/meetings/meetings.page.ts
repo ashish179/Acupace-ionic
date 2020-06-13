@@ -41,10 +41,6 @@ export class MeetingsPage implements OnInit {
    this.leng = this.list.length;
 
   });
- setInterval(() => {
-this.doRefresh();
-}, 5000);
-
     console.log(this.authUser);
   }
 
@@ -52,15 +48,14 @@ this.doRefresh();
     let now = moment().format("YYYY-MM-DDTHH:mm");
     let date = moment(start_date).format("YYYY-MM-DDTHH:mm");
     console.log(now,date);
-    if (moment(now).isBefore(moment(end_date).format("YYYY-MM-DDTHH:mm")) && moment(moment(start_date).format("YYYY-MM-DDTHH:mm")).isBefore(now)) {
-      this.toastService.presentToast('to activate meeting press start call');
+    if (moment(now).isBefore(moment(end_date).format("YYYY-MM-DDTHH:mm")) && moment(moment(start_date).format("YYYY-MM-DDTHH:mm")).isBefore(moment(now))) {
       this.data.setData(object);
     } else {
       this.toastService.presentToast('time out of bounds');
     }
   }
 
-  doRefresh() {
+  doRefresh(event) {
     this.subscription.unsubscribe();
     this.subscription = this.webservice.meetingList({"host_id":this.authUser.ID}).subscribe((res:any)=>{console.log(res);
       this.list = res.result;
@@ -74,9 +69,12 @@ this.doRefresh();
      console.log(art);
      this.list = art;
      console.log(this.leng - this.list.length);
-
-
+     if (event){
+        event.target.complete();
+    }
     });
 }
+
+
 
 }

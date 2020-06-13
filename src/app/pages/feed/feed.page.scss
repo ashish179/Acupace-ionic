@@ -1,22 +1,64 @@
 .class1 {
-  float: left;
-}
-ion-toolbar {
-  --ion-background-color: #0f4c81 !important;
-}
-ion-title {
-  color: white;
+    float: left;
+  }
+  ion-toolbar {
+    --ion-background-color: #0f4c81 !important;
+  }
+  ion-title {
+    color: white;
 
-  margin-left: 110px;
-  margin-top: 5px;
-}
+    margin-left: 110px;
+    margin-top: 5px;
+  }
 
-.notification {
-  float: right;
-  margin-top: -25px;
-}
+  .notification {
+    float: right;
+    margin-top: -25px;
+  }
 
-ion-icon {
-  width: 30px;
-  height: 30px;
-}
+  ion-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .hello{
+
+  margin-left:20px;
+  font-size: 150%;
+  font-family: 'Georgia';
+
+
+
+
+  }
+
+
+  .welcm{
+   // position:relative;
+    margin-top:-10px;
+    margin-left: 70px;
+    font-size: 120%;
+    font-family: 'Georgia';
+
+  }
+  .best{
+    margin-top:-10px;
+    margin-left:70px;
+    font-size: 120%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+
+  .tagline{
+      font-family: monospace;
+      font-size: 130%;
+      color:black;
+      margin-top:-1px;
+      text-decoration: underline;
+
+
+  }
+
+  ion-card-title{
+    font-size: 150%;
+
+  }

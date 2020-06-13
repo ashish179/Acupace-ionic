@@ -25,6 +25,7 @@ var map = {
 	"./pages/meetings/meetings.module": [
 		"./src/app/pages/meetings/meetings.module.ts",
 		"default~home-home-module~index-index-module~pages-about-us-about-us-module~pages-meetings-meetings-m~71a403f3",
+		"default~pages-meetings-meetings-module~pages-notifications-notifications-module~pages-tutorial-tutor~4a6bab91",
 		"common",
 		"pages-meetings-meetings-module"
 	],
@@ -38,7 +39,7 @@ var map = {
 	"./pages/tutorial/tutorial.module": [
 		"./src/app/pages/tutorial/tutorial.module.ts",
 		"default~home-home-module~index-index-module~pages-about-us-about-us-module~pages-meetings-meetings-m~71a403f3",
-		"default~pages-notifications-notifications-module~pages-tutorial-tutorial-module",
+		"default~pages-meetings-meetings-module~pages-notifications-notifications-module~pages-tutorial-tutor~4a6bab91",
 		"common",
 		"pages-tutorial-tutorial-module"
 	]
@@ -651,7 +652,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _ionic_native_diagnostic_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/diagnostic/ngx */ "./node_modules/@ionic-native/diagnostic/ngx/index.js");
-/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+/* harmony import */ var _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic-native/network/ngx */ "./node_modules/@ionic-native/network/ngx/index.js");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+
 
 
 
@@ -680,7 +683,8 @@ var AppModule = /** @class */ (function () {
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
                 _ionic_native_diagnostic_ngx__WEBPACK_IMPORTED_MODULE_10__["Diagnostic"],
-                _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_11__["Camera"],
+                _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_12__["Camera"],
+                _ionic_native_network_ngx__WEBPACK_IMPORTED_MODULE_11__["Network"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["IonicRouteStrategy"] }
@@ -710,7 +714,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: true,
-    apiUrl: 'http://acupace.co.in/videoconfwebservice/'
+    apiUrl: 'https://acupace.in/videoconfwebservice/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -757,7 +761,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\lenovo\Desktop\project\acuMEET\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\lenovo\Desktop\project\Acupace-ionic\src\main.ts */"./src/main.ts");
 
 
 /***/ })

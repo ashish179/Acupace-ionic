@@ -3,20 +3,33 @@
     <ion-menu-toggle class="class1">
       <ion-icon name="menu" color="light"></ion-icon>
     </ion-menu-toggle>
-    <ion-title>Notification</ion-title>
+    <ion-title>Meetings as attendee</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
-  <ion-refresher
-    slot="fixed"
-    pullFactor="0.5"
-    pullMin="100"
-    pullMax="200"
-    (ionRefresh)="doRefresh($event)"
-  >
-    <ion-refresher-content></ion-refresher-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
   </ion-refresher>
+
+
+
+  <ion-item routerLink="/home/meetings" >
+    <ion-icon
+      name="notifications-outline"
+      color="dark"
+      slot="start"
+    ></ion-icon>
+    <ion-button color="dark">view as host</ion-button>
+  </ion-item>
+
   <ion-item lines="inset" *ngFor="let item of list">
     <ion-card color="light">
       <ion-card-content>

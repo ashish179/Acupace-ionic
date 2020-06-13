@@ -87,7 +87,11 @@ export class NotificationsPage implements OnInit {
         attendee_email: this.attendee_email.value,
       };
       console.log(bodystring);
-      this.webservice.AddInvitation(bodystring).subscribe();
+      this.webservice.AddInvitation(bodystring).subscribe((res:any)=>{
+        this.toastService.presentToast(res["message"]);
+      },(error: any) => {
+        this.toastService.presentToast('Network Issue.');
+      });
     } else {
       console.log('error');
     }

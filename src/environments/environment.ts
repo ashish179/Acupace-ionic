@@ -4,10 +4,10 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://acupace.co.in/videoconfwebservice/'
+  apiUrl: 'https://acupace.in/videoconfwebservice/'
 
 };
-   
+
 
 /*
  * For easier debugging in development mode, you can import the following file
