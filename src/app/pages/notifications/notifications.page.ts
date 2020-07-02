@@ -24,13 +24,15 @@ export class NotificationsPage implements OnInit {
   public submitAttempt: boolean = false;
   public subscription: any;
   public bodystring: any;
+  public deviceType :string;
   constructor(
     private renderer: Renderer2,
     public formBuilder: FormBuilder,
     private webservice: NotificationService,
     private auth: AuthService,
     private toastService: ToastService,
-    public data: DataService
+    public data: DataService,
+    private deviceService: DeviceDetectorService
   ) {
     this.inviteForm = this.formBuilder.group({
       attendee_email: new FormArray([
@@ -50,36 +52,29 @@ export class NotificationsPage implements OnInit {
     this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
       console.log(typeof this.authUser);
+      console.log(this.deviceService.isMobile());
+
     });
-    let email = { attendee_email: this.authUser.user_email };
-    this.subscription = this.webservice
-      .notificationList(email)
-      .subscribe((res: any) => {
-        this.list = res.result;
-         console.log(this.list);
-
-        this.list.reduce((arr, item) => {
-          let exists = !!arr.find(x => x.host_room_id === item.host_room_id);
-          if(!exists){
-              arr.push(item);
-          }
-          return arr;
-       }, []);
-
-        console.log(this.list);
-      });
   }
+
+ deviceDetect(){
+   if(this.deviceService.isMobile()){this.deviceType = "mobile";}
+   if(this.deviceService.isTablet()){this.deviceType = "Tablet";}
+   if(this.deviceService.isDesktop()){this.deviceType = "desktop/laptop"}
+ }
+
   Invite() {
     this.submitAttempt = true;
     console.log(this.inviteForm);
     if (this.inviteForm.valid) {
+      this.deviceDetect();
       let bodystring = {
         host_id: this.authUser.ID,
         host_name: this.authUser.name,
         channel_name: this.inviteForm.get('channel_name').value,
         host_email: this.authUser.user_email,
         role: 'host',
-        host_device_details: 'device_name',
+        host_device_details: this.deviceType,
         host_meeting_start_time: moment(this.inviteForm.get('host_meeting_start_time')
           .value).format("YYYY-MM-DDTHH:mm"),
         host_meeting_end_time:  moment(this.inviteForm.get('host_meeting_end_time')
@@ -100,6 +95,7 @@ export class NotificationsPage implements OnInit {
    get attendee_email(): FormArray {
     return this.inviteForm.get('attendee_email') as FormArray;
   }
+
   addNameField() {
     this.attendee_email.push(new FormControl('', Validators.compose([
           Validators.pattern(
@@ -110,6 +106,7 @@ export class NotificationsPage implements OnInit {
       )
         );
   }
+
   deleteNameField(index: number) {
     if (this.attendee_email.length !== 1) {
       this.attendee_email.removeAt(index);

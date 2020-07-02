@@ -31,6 +31,16 @@
   		</div>
   	</div>
   <div #agora_local id="agora_local" (click)="toggleView()" ></div>
+  <div class="toggleButtonContainer">
+  <ion-button (click)="toggleAudio()" size="small" shape="round">
+    <ion-icon name="mic-outline" *ngIf="audioBool"></ion-icon>
+    <ion-icon name="mic-off-outline" *ngIf="!audioBool"></ion-icon>
+  </ion-button>
+  <ion-button (click)="toggleVideo()" size="small" shape="round">
+    <ion-icon name="eye-outline"  *ngIf="videoBool"></ion-icon>
+    <ion-icon name="eye-off-outline" *ngIf="!videoBool"></ion-icon>
+  </ion-button>
+  </div>
   </div>
 
 </ion-content>

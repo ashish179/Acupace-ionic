@@ -3,15 +3,21 @@
   margin-right: auto;
   z-index: 5 !important;
   float: left;
-  position: relative;
+  position: absolute;
   display: flex;
+}
+
+.toggleButtonContainer{
+   z-index: 5 !important;
+   position:  absolute;
+   bottom: 0px;
 }
 
 #agora_local {
   height: 100%;
   width: 100%;
   float: left;
-  position: relative;
+  position: absolute;
   margin-left: auto;
   margin-right: auto;
   z-index: 1 !important;

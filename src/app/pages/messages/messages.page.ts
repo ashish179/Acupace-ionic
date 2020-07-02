@@ -18,30 +18,27 @@ import { BigScreenService } from 'angular-bigscreen';
 })
 export class MessagesPage implements OnInit {
 
- localStream: Stream // Add
+ localStream: Stream ;// Add;
  dataObject: any;
  channelName : string;
-  public mainScreen : any  = 0;
+ public mainScreen : any  = 0;
+ public audioBool : any = 1;
+ public videoBool : any = 1;
+ public screenShareBool : any = 0;
+ public screenInitializeBool : any = 1;
  UID : any;
  localCallId = 'agora_local';
  reset:any;
+
  public remoteStreams = {};
  subscription : any;
  remoteCalls: any = [];
  @ViewChild('agora_local',{static: false}) private element : ElementRef;
-  @ViewChild('main',{static: false}) private main: ElementRef;
+ @ViewChild('main',{static: false}) private main: ElementRef;
  @ViewChild('container',{static: false}) private container : ElementRef;
  @ViewChild('widgetsContent', {read: ElementRef,static:true}) public widgetsContent: ElementRef<any>;
-
-public scrollRight(): void {
-  this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft + 250), behavior: 'smooth' });
-}
-
-public scrollLeft(): void {
-  this.widgetsContent.nativeElement.scrollTo({ left: (this.widgetsContent.nativeElement.scrollLeft - 250), behavior: 'smooth' });
-}
  public authUser: any;
-  public LocalStreamID=this.localCallId;
+ public LocalStreamID=this.localCallId;
   // Add
   constructor(
     private bigScreenService: BigScreenService,
@@ -71,8 +68,10 @@ public scrollLeft(): void {
   }
     this.agoraService.client.join(null, this.channelName, this.UID, (uid) => {
       this.localStream = this.agoraService.createStream(this.UID, true, null, null, true, false);
+      console.log(this.localStream);
       this.localStream.setVideoProfile('720p_3');
       this.subscribeToStreams();
+
     });
     }
   else{
@@ -149,7 +148,6 @@ public scrollLeft(): void {
         console.log(`${evt.uid} left from this channel`);
       }
     });
-    this.adjust()
   }
 
 
@@ -185,15 +183,6 @@ public scrollLeft(): void {
 }
 
 
-adjust(){
-  this.renderer.setStyle(this.container.nativeElement,"position","absolute");
-  this.renderer.setStyle(this.element.nativeElement,"position","absolute");
- this.renderer.setStyle(this.container.nativeElement,"z-index","1");
-  this.renderer.setStyle(this.element.nativeElement,"z-index","2");
-}
-
-
-
   ngOnInit() {
   this.auth.userData$.subscribe((res: any) => {
       this.authUser = res;
@@ -205,13 +194,6 @@ adjust(){
    this.startCall();
   }
 
-
-  toggleView(){
-    let data = "agora_local";
-    console.log(this.remoteStreams);
-    console.log(this.remoteStreams[data]);
-
-  }
   Toggle(local:any,remote:any){
       console.log(this.remoteStreams[local]);
       console.log(this.remoteStreams[remote]);
@@ -224,6 +206,7 @@ adjust(){
       this.remoteStreams[local]=this.remoteStreams[remote];
       this.remoteStreams[remote]=stream;
   }
+
   Toggle_Stream(remoteId:any){
     console.log(remoteId);
   if(this.remoteStreams[this.localCallId]!=this.localStream){
@@ -254,5 +237,28 @@ adjust(){
    this.mainScreen = 1;
  }
 }
+
+  toggleAudio(){
+    if(this.audioBool){
+    this.localStream.muteAudio();
+    this.audioBool = 0;
+  }
+  else{
+    this.localStream.unmuteAudio();
+    this.audioBool = 1;
+  }
+}
+
+  toggleVideo(){
+    if(this.videoBool){
+    this.localStream.muteVideo();
+    this.videoBool = 0;
+  }
+  else{
+    this.localStream.unmuteVideo();
+    this.videoBool = 1;
+  }
+
+  }
 
 }

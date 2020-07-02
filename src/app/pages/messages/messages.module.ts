@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { BigScreenModule } from 'angular-bigscreen';
 import { AngularAgoraRtcModule, AgoraConfig } from 'angular-agora-rtc';
-
 import { IonicModule } from '@ionic/angular';
 import { CountdownModule } from 'ngx-countdown';
 import { MessagesPage } from './messages.page';
